@@ -234,3 +234,21 @@ func TestMerklize(t *testing.T) {
 		}
 	}
 }
+
+func TestNewDistributionWithData(t *testing.T) {
+	jsonBytes := []byte(`{
+		"0x0D6bA28b9919CfCDb6b233469Cc5Ce30b979e08E": {
+			"0x1006dd1B8C3D0eF53489beD27577C75299F71473": 2000000000000000000
+		}
+	}`)
+
+	distro, err := distribution.NewDistributionWithData(jsonBytes)
+	assert.Nil(t, err)
+
+	account, tokens, err := distro.Merklize()
+
+	assert.Nil(t, err)
+	assert.Len(t, account.Data, 1)
+	addr := common.HexToAddress("0x0D6bA28b9919CfCDb6b233469Cc5Ce30b979e08E")
+	assert.Len(t, tokens[addr].Data, 1)
+}

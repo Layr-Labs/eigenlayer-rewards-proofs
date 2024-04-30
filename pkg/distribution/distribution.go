@@ -52,6 +52,20 @@ func NewDistribution() *Distribution {
 	}
 }
 
+func NewDistributionWithData(initJsonData []byte) (*Distribution, error) {
+	data := orderedmap.New[gethcommon.Address, *orderedmap.OrderedMap[gethcommon.Address, *BigInt]]()
+	distro := &Distribution{
+		data: data,
+	}
+
+	if data != nil {
+		if err := distro.UnmarshalJSON(initJsonData); err != nil {
+			return nil, err
+		}
+	}
+	return distro, nil
+}
+
 func (d *Distribution) MarshalJSON() ([]byte, error) {
 	return d.data.MarshalJSON()
 }
