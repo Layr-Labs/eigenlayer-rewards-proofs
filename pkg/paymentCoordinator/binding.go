@@ -51,8 +51,8 @@ type IPaymentCoordinatorRangePayment struct {
 	StrategiesAndMultipliers []IPaymentCoordinatorStrategyAndMultiplier
 	Token                    common.Address
 	Amount                   *big.Int
-	StartTimestamp           uint64
-	Duration                 uint64
+	StartTimestamp           uint32
+	Duration                 uint32
 }
 
 // IPaymentCoordinatorStrategyAndMultiplier is an auto generated low-level Go binding around an user-defined struct.
@@ -69,7 +69,7 @@ type IPaymentCoordinatorTokenTreeMerkleLeaf struct {
 
 // ContractIPaymentCoordinatorMetaData contains all meta data concerning the ContractIPaymentCoordinator contract.
 var ContractIPaymentCoordinatorMetaData = &bind.MetaData{
-	ABI: "[{\"type\":\"function\",\"name\":\"GENESIS_PAYMENT_TIMESTAMP\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAX_FUTURE_LENGTH\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAX_PAYMENT_DURATION\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAX_RETROACTIVE_LENGTH\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"activationDelay\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"calculateEarnerLeafHash\",\"inputs\":[{\"name\":\"leaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.EarnerTreeMerkleLeaf\",\"components\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"earnerTokenRoot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"calculateTokenLeafHash\",\"inputs\":[{\"name\":\"leaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"calculationIntervalSeconds\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"checkClaim\",\"inputs\":[{\"name\":\"claim\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.PaymentMerkleClaim\",\"components\":[{\"name\":\"rootIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerTreeProof\",\"type\":\"bytes\",\"internalType\":\"bytes\"},{\"name\":\"earnerLeaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.EarnerTreeMerkleLeaf\",\"components\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"earnerTokenRoot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]},{\"name\":\"tokenIndices\",\"type\":\"uint32[]\",\"internalType\":\"uint32[]\"},{\"name\":\"tokenTreeProofs\",\"type\":\"bytes[]\",\"internalType\":\"bytes[]\"},{\"name\":\"tokenLeaves\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf[]\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}]}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"claimerFor\",\"inputs\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"cumulativeClaimed\",\"inputs\":[{\"name\":\"claimer\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"currPaymentCalculationEndTimestamp\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRootIndexFromHash\",\"inputs\":[{\"name\":\"rootHash\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"globalOperatorCommissionBips\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint16\",\"internalType\":\"uint16\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"payAllForRange\",\"inputs\":[{\"name\":\"rangePayment\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.RangePayment[]\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint64\",\"internalType\":\"uint64\"},{\"name\":\"duration\",\"type\":\"uint64\",\"internalType\":\"uint64\"}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"payForRange\",\"inputs\":[{\"name\":\"rangePayments\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.RangePayment[]\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint64\",\"internalType\":\"uint64\"},{\"name\":\"duration\",\"type\":\"uint64\",\"internalType\":\"uint64\"}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"paymentUpdater\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"processClaim\",\"inputs\":[{\"name\":\"claim\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.PaymentMerkleClaim\",\"components\":[{\"name\":\"rootIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerTreeProof\",\"type\":\"bytes\",\"internalType\":\"bytes\"},{\"name\":\"earnerLeaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.EarnerTreeMerkleLeaf\",\"components\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"earnerTokenRoot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]},{\"name\":\"tokenIndices\",\"type\":\"uint32[]\",\"internalType\":\"uint32[]\"},{\"name\":\"tokenTreeProofs\",\"type\":\"bytes[]\",\"internalType\":\"bytes[]\"},{\"name\":\"tokenLeaves\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf[]\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setActivationDelay\",\"inputs\":[{\"name\":\"_activationDelay\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setClaimerFor\",\"inputs\":[{\"name\":\"claimer\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setGlobalOperatorCommission\",\"inputs\":[{\"name\":\"_globalCommissionBips\",\"type\":\"uint16\",\"internalType\":\"uint16\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPaymentUpdater\",\"inputs\":[{\"name\":\"_paymentUpdater\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"submitRoot\",\"inputs\":[{\"name\":\"root\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"paymentCalculationEndTimestamp\",\"type\":\"uint64\",\"internalType\":\"uint64\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"ActivationDelaySet\",\"inputs\":[{\"name\":\"oldActivationDelay\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"},{\"name\":\"newActivationDelay\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"CalculationIntervalSecondsSet\",\"inputs\":[{\"name\":\"oldCalculationIntervalSeconds\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"},{\"name\":\"newCalculationIntervalSeconds\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ClaimerForSet\",\"inputs\":[{\"name\":\"earner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"oldClaimer\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"claimer\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DistributionRootSubmitted\",\"inputs\":[{\"name\":\"rootIndex\",\"type\":\"uint32\",\"indexed\":true,\"internalType\":\"uint32\"},{\"name\":\"root\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"paymentCalculationEndTimestamp\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"},{\"name\":\"activatedAt\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"GlobalCommissionBipsSet\",\"inputs\":[{\"name\":\"oldGlobalCommissionBips\",\"type\":\"uint16\",\"indexed\":false,\"internalType\":\"uint16\"},{\"name\":\"newGlobalCommissionBips\",\"type\":\"uint16\",\"indexed\":false,\"internalType\":\"uint16\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PayAllForRangeSubmitterSet\",\"inputs\":[{\"name\":\"payAllForRangeSubmitter\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"oldValue\",\"type\":\"bool\",\"indexed\":true,\"internalType\":\"bool\"},{\"name\":\"newValue\",\"type\":\"bool\",\"indexed\":true,\"internalType\":\"bool\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PaymentClaimed\",\"inputs\":[{\"name\":\"root\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"leaf\",\"type\":\"tuple\",\"indexed\":false,\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PaymentUpdaterSet\",\"inputs\":[{\"name\":\"oldPaymentUpdater\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"newPaymentUpdater\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RangePaymentCreated\",\"inputs\":[{\"name\":\"avs\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"paymentNonce\",\"type\":\"uint256\",\"indexed\":true,\"internalType\":\"uint256\"},{\"name\":\"rangePaymentHash\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"rangePayment\",\"type\":\"tuple\",\"indexed\":false,\"internalType\":\"structIPaymentCoordinator.RangePayment\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint64\",\"internalType\":\"uint64\"},{\"name\":\"duration\",\"type\":\"uint64\",\"internalType\":\"uint64\"}]}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RangePaymentForAllCreated\",\"inputs\":[{\"name\":\"submitter\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"paymentNonce\",\"type\":\"uint256\",\"indexed\":true,\"internalType\":\"uint256\"},{\"name\":\"rangePaymentHash\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"rangePayment\",\"type\":\"tuple\",\"indexed\":false,\"internalType\":\"structIPaymentCoordinator.RangePayment\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint64\",\"internalType\":\"uint64\"},{\"name\":\"duration\",\"type\":\"uint64\",\"internalType\":\"uint64\"}]}],\"anonymous\":false}]",
+	ABI: "[{\"type\":\"function\",\"name\":\"CALCULATION_INTERVAL_SECONDS\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"GENESIS_PAYMENT_TIMESTAMP\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAX_FUTURE_LENGTH\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAX_PAYMENT_DURATION\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAX_RETROACTIVE_LENGTH\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"activationDelay\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"calculateEarnerLeafHash\",\"inputs\":[{\"name\":\"leaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.EarnerTreeMerkleLeaf\",\"components\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"earnerTokenRoot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"calculateTokenLeafHash\",\"inputs\":[{\"name\":\"leaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"checkClaim\",\"inputs\":[{\"name\":\"claim\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.PaymentMerkleClaim\",\"components\":[{\"name\":\"rootIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerTreeProof\",\"type\":\"bytes\",\"internalType\":\"bytes\"},{\"name\":\"earnerLeaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.EarnerTreeMerkleLeaf\",\"components\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"earnerTokenRoot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]},{\"name\":\"tokenIndices\",\"type\":\"uint32[]\",\"internalType\":\"uint32[]\"},{\"name\":\"tokenTreeProofs\",\"type\":\"bytes[]\",\"internalType\":\"bytes[]\"},{\"name\":\"tokenLeaves\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf[]\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}]}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"claimerFor\",\"inputs\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"cumulativeClaimed\",\"inputs\":[{\"name\":\"claimer\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"globalOperatorCommissionBips\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint16\",\"internalType\":\"uint16\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"operatorCommissionBips\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"avs\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint16\",\"internalType\":\"uint16\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"payAllForRange\",\"inputs\":[{\"name\":\"rangePayment\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.RangePayment[]\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"duration\",\"type\":\"uint32\",\"internalType\":\"uint32\"}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"payForRange\",\"inputs\":[{\"name\":\"rangePayments\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.RangePayment[]\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"duration\",\"type\":\"uint32\",\"internalType\":\"uint32\"}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"paymentUpdater\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"processClaim\",\"inputs\":[{\"name\":\"claim\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.PaymentMerkleClaim\",\"components\":[{\"name\":\"rootIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerIndex\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"earnerTreeProof\",\"type\":\"bytes\",\"internalType\":\"bytes\"},{\"name\":\"earnerLeaf\",\"type\":\"tuple\",\"internalType\":\"structIPaymentCoordinator.EarnerTreeMerkleLeaf\",\"components\":[{\"name\":\"earner\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"earnerTokenRoot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]},{\"name\":\"tokenIndices\",\"type\":\"uint32[]\",\"internalType\":\"uint32[]\"},{\"name\":\"tokenTreeProofs\",\"type\":\"bytes[]\",\"internalType\":\"bytes[]\"},{\"name\":\"tokenLeaves\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.TokenTreeMerkleLeaf[]\",\"components\":[{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"cumulativeEarnings\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}]},{\"name\":\"recipient\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setActivationDelay\",\"inputs\":[{\"name\":\"_activationDelay\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setClaimerFor\",\"inputs\":[{\"name\":\"claimer\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setGlobalOperatorCommission\",\"inputs\":[{\"name\":\"_globalCommissionBips\",\"type\":\"uint16\",\"internalType\":\"uint16\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPayAllForRangeSubmitter\",\"inputs\":[{\"name\":\"_submitter\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"_newValue\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPaymentUpdater\",\"inputs\":[{\"name\":\"_paymentUpdater\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"submitRoot\",\"inputs\":[{\"name\":\"root\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"paymentCalculationEndTimestamp\",\"type\":\"uint32\",\"internalType\":\"uint32\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"ActivationDelaySet\",\"inputs\":[{\"name\":\"oldActivationDelay\",\"type\":\"uint32\",\"indexed\":false,\"internalType\":\"uint32\"},{\"name\":\"newActivationDelay\",\"type\":\"uint32\",\"indexed\":false,\"internalType\":\"uint32\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ClaimerForSet\",\"inputs\":[{\"name\":\"earner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"oldClaimer\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"claimer\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DistributionRootSubmitted\",\"inputs\":[{\"name\":\"rootIndex\",\"type\":\"uint32\",\"indexed\":true,\"internalType\":\"uint32\"},{\"name\":\"root\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"paymentCalculationEndTimestamp\",\"type\":\"uint32\",\"indexed\":true,\"internalType\":\"uint32\"},{\"name\":\"activatedAt\",\"type\":\"uint32\",\"indexed\":false,\"internalType\":\"uint32\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"GlobalCommissionBipsSet\",\"inputs\":[{\"name\":\"oldGlobalCommissionBips\",\"type\":\"uint16\",\"indexed\":false,\"internalType\":\"uint16\"},{\"name\":\"newGlobalCommissionBips\",\"type\":\"uint16\",\"indexed\":false,\"internalType\":\"uint16\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PayAllForRangeSubmitterSet\",\"inputs\":[{\"name\":\"payAllForRangeSubmitter\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"oldValue\",\"type\":\"bool\",\"indexed\":true,\"internalType\":\"bool\"},{\"name\":\"newValue\",\"type\":\"bool\",\"indexed\":true,\"internalType\":\"bool\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PaymentClaimed\",\"inputs\":[{\"name\":\"root\",\"type\":\"bytes32\",\"indexed\":false,\"internalType\":\"bytes32\"},{\"name\":\"earner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"claimer\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"token\",\"type\":\"address\",\"indexed\":false,\"internalType\":\"contractIERC20\"},{\"name\":\"claimedAmount\",\"type\":\"uint256\",\"indexed\":false,\"internalType\":\"uint256\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PaymentUpdaterSet\",\"inputs\":[{\"name\":\"oldPaymentUpdater\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"newPaymentUpdater\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RangePaymentCreated\",\"inputs\":[{\"name\":\"avs\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"paymentNonce\",\"type\":\"uint256\",\"indexed\":true,\"internalType\":\"uint256\"},{\"name\":\"rangePaymentHash\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"rangePayment\",\"type\":\"tuple\",\"indexed\":false,\"internalType\":\"structIPaymentCoordinator.RangePayment\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"duration\",\"type\":\"uint32\",\"internalType\":\"uint32\"}]}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RangePaymentForAllCreated\",\"inputs\":[{\"name\":\"submitter\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"paymentNonce\",\"type\":\"uint256\",\"indexed\":true,\"internalType\":\"uint256\"},{\"name\":\"rangePaymentHash\",\"type\":\"bytes32\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"name\":\"rangePayment\",\"type\":\"tuple\",\"indexed\":false,\"internalType\":\"structIPaymentCoordinator.RangePayment\",\"components\":[{\"name\":\"strategiesAndMultipliers\",\"type\":\"tuple[]\",\"internalType\":\"structIPaymentCoordinator.StrategyAndMultiplier[]\",\"components\":[{\"name\":\"strategy\",\"type\":\"address\",\"internalType\":\"contractIStrategy\"},{\"name\":\"multiplier\",\"type\":\"uint96\",\"internalType\":\"uint96\"}]},{\"name\":\"token\",\"type\":\"address\",\"internalType\":\"contractIERC20\"},{\"name\":\"amount\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"startTimestamp\",\"type\":\"uint32\",\"internalType\":\"uint32\"},{\"name\":\"duration\",\"type\":\"uint32\",\"internalType\":\"uint32\"}]}],\"anonymous\":false}]",
 }
 
 // ContractIPaymentCoordinatorABI is the input ABI used to generate the binding from.
@@ -218,18 +218,49 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorRaw) Tr
 	return _ContractIPaymentCoordinator.Contract.contract.Transact(opts, method, params...)
 }
 
+// CALCULATIONINTERVALSECONDS is a free data retrieval call binding the contract method 0x9d45c281.
+//
+// Solidity: function CALCULATION_INTERVAL_SECONDS() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) CALCULATIONINTERVALSECONDS(opts *bind.CallOpts) (uint32, error) {
+	var out []interface{}
+	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "CALCULATION_INTERVAL_SECONDS")
+
+	if err != nil {
+		return *new(uint32), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
+
+	return out0, err
+
+}
+
+// CALCULATIONINTERVALSECONDS is a free data retrieval call binding the contract method 0x9d45c281.
+//
+// Solidity: function CALCULATION_INTERVAL_SECONDS() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) CALCULATIONINTERVALSECONDS() (uint32, error) {
+	return _ContractIPaymentCoordinator.Contract.CALCULATIONINTERVALSECONDS(&_ContractIPaymentCoordinator.CallOpts)
+}
+
+// CALCULATIONINTERVALSECONDS is a free data retrieval call binding the contract method 0x9d45c281.
+//
+// Solidity: function CALCULATION_INTERVAL_SECONDS() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) CALCULATIONINTERVALSECONDS() (uint32, error) {
+	return _ContractIPaymentCoordinator.Contract.CALCULATIONINTERVALSECONDS(&_ContractIPaymentCoordinator.CallOpts)
+}
+
 // GENESISPAYMENTTIMESTAMP is a free data retrieval call binding the contract method 0x2cfd45eb.
 //
-// Solidity: function GENESIS_PAYMENT_TIMESTAMP() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) GENESISPAYMENTTIMESTAMP(opts *bind.CallOpts) (uint64, error) {
+// Solidity: function GENESIS_PAYMENT_TIMESTAMP() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) GENESISPAYMENTTIMESTAMP(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "GENESIS_PAYMENT_TIMESTAMP")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -237,30 +268,30 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) GENESISPA
 
 // GENESISPAYMENTTIMESTAMP is a free data retrieval call binding the contract method 0x2cfd45eb.
 //
-// Solidity: function GENESIS_PAYMENT_TIMESTAMP() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) GENESISPAYMENTTIMESTAMP() (uint64, error) {
+// Solidity: function GENESIS_PAYMENT_TIMESTAMP() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) GENESISPAYMENTTIMESTAMP() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.GENESISPAYMENTTIMESTAMP(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // GENESISPAYMENTTIMESTAMP is a free data retrieval call binding the contract method 0x2cfd45eb.
 //
-// Solidity: function GENESIS_PAYMENT_TIMESTAMP() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) GENESISPAYMENTTIMESTAMP() (uint64, error) {
+// Solidity: function GENESIS_PAYMENT_TIMESTAMP() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) GENESISPAYMENTTIMESTAMP() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.GENESISPAYMENTTIMESTAMP(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // MAXFUTURELENGTH is a free data retrieval call binding the contract method 0x04a0c502.
 //
-// Solidity: function MAX_FUTURE_LENGTH() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXFUTURELENGTH(opts *bind.CallOpts) (uint64, error) {
+// Solidity: function MAX_FUTURE_LENGTH() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXFUTURELENGTH(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "MAX_FUTURE_LENGTH")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -268,30 +299,30 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXFUTURE
 
 // MAXFUTURELENGTH is a free data retrieval call binding the contract method 0x04a0c502.
 //
-// Solidity: function MAX_FUTURE_LENGTH() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) MAXFUTURELENGTH() (uint64, error) {
+// Solidity: function MAX_FUTURE_LENGTH() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) MAXFUTURELENGTH() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.MAXFUTURELENGTH(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // MAXFUTURELENGTH is a free data retrieval call binding the contract method 0x04a0c502.
 //
-// Solidity: function MAX_FUTURE_LENGTH() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) MAXFUTURELENGTH() (uint64, error) {
+// Solidity: function MAX_FUTURE_LENGTH() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) MAXFUTURELENGTH() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.MAXFUTURELENGTH(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // MAXPAYMENTDURATION is a free data retrieval call binding the contract method 0xee619597.
 //
-// Solidity: function MAX_PAYMENT_DURATION() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXPAYMENTDURATION(opts *bind.CallOpts) (uint64, error) {
+// Solidity: function MAX_PAYMENT_DURATION() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXPAYMENTDURATION(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "MAX_PAYMENT_DURATION")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -299,30 +330,30 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXPAYMEN
 
 // MAXPAYMENTDURATION is a free data retrieval call binding the contract method 0xee619597.
 //
-// Solidity: function MAX_PAYMENT_DURATION() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) MAXPAYMENTDURATION() (uint64, error) {
+// Solidity: function MAX_PAYMENT_DURATION() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) MAXPAYMENTDURATION() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.MAXPAYMENTDURATION(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // MAXPAYMENTDURATION is a free data retrieval call binding the contract method 0xee619597.
 //
-// Solidity: function MAX_PAYMENT_DURATION() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) MAXPAYMENTDURATION() (uint64, error) {
+// Solidity: function MAX_PAYMENT_DURATION() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) MAXPAYMENTDURATION() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.MAXPAYMENTDURATION(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // MAXRETROACTIVELENGTH is a free data retrieval call binding the contract method 0x37838ed0.
 //
-// Solidity: function MAX_RETROACTIVE_LENGTH() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXRETROACTIVELENGTH(opts *bind.CallOpts) (uint64, error) {
+// Solidity: function MAX_RETROACTIVE_LENGTH() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXRETROACTIVELENGTH(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "MAX_RETROACTIVE_LENGTH")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -330,30 +361,30 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) MAXRETROA
 
 // MAXRETROACTIVELENGTH is a free data retrieval call binding the contract method 0x37838ed0.
 //
-// Solidity: function MAX_RETROACTIVE_LENGTH() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) MAXRETROACTIVELENGTH() (uint64, error) {
+// Solidity: function MAX_RETROACTIVE_LENGTH() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) MAXRETROACTIVELENGTH() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.MAXRETROACTIVELENGTH(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // MAXRETROACTIVELENGTH is a free data retrieval call binding the contract method 0x37838ed0.
 //
-// Solidity: function MAX_RETROACTIVE_LENGTH() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) MAXRETROACTIVELENGTH() (uint64, error) {
+// Solidity: function MAX_RETROACTIVE_LENGTH() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) MAXRETROACTIVELENGTH() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.MAXRETROACTIVELENGTH(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // ActivationDelay is a free data retrieval call binding the contract method 0x3a8c0786.
 //
-// Solidity: function activationDelay() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) ActivationDelay(opts *bind.CallOpts) (uint64, error) {
+// Solidity: function activationDelay() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) ActivationDelay(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "activationDelay")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -361,15 +392,15 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) Activatio
 
 // ActivationDelay is a free data retrieval call binding the contract method 0x3a8c0786.
 //
-// Solidity: function activationDelay() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) ActivationDelay() (uint64, error) {
+// Solidity: function activationDelay() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) ActivationDelay() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.ActivationDelay(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // ActivationDelay is a free data retrieval call binding the contract method 0x3a8c0786.
 //
-// Solidity: function activationDelay() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) ActivationDelay() (uint64, error) {
+// Solidity: function activationDelay() view returns(uint32)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) ActivationDelay() (uint32, error) {
 	return _ContractIPaymentCoordinator.Contract.ActivationDelay(&_ContractIPaymentCoordinator.CallOpts)
 }
 
@@ -433,37 +464,6 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) Calculat
 // Solidity: function calculateTokenLeafHash((address,uint256) leaf) pure returns(bytes32)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) CalculateTokenLeafHash(leaf IPaymentCoordinatorTokenTreeMerkleLeaf) ([32]byte, error) {
 	return _ContractIPaymentCoordinator.Contract.CalculateTokenLeafHash(&_ContractIPaymentCoordinator.CallOpts, leaf)
-}
-
-// CalculationIntervalSeconds is a free data retrieval call binding the contract method 0x169bde2b.
-//
-// Solidity: function calculationIntervalSeconds() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) CalculationIntervalSeconds(opts *bind.CallOpts) (uint64, error) {
-	var out []interface{}
-	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "calculationIntervalSeconds")
-
-	if err != nil {
-		return *new(uint64), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
-
-	return out0, err
-
-}
-
-// CalculationIntervalSeconds is a free data retrieval call binding the contract method 0x169bde2b.
-//
-// Solidity: function calculationIntervalSeconds() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) CalculationIntervalSeconds() (uint64, error) {
-	return _ContractIPaymentCoordinator.Contract.CalculationIntervalSeconds(&_ContractIPaymentCoordinator.CallOpts)
-}
-
-// CalculationIntervalSeconds is a free data retrieval call binding the contract method 0x169bde2b.
-//
-// Solidity: function calculationIntervalSeconds() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) CalculationIntervalSeconds() (uint64, error) {
-	return _ContractIPaymentCoordinator.Contract.CalculationIntervalSeconds(&_ContractIPaymentCoordinator.CallOpts)
 }
 
 // CheckClaim is a free data retrieval call binding the contract method 0x5e9d8348.
@@ -559,68 +559,6 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) Cu
 	return _ContractIPaymentCoordinator.Contract.CumulativeClaimed(&_ContractIPaymentCoordinator.CallOpts, claimer, token)
 }
 
-// CurrPaymentCalculationEndTimestamp is a free data retrieval call binding the contract method 0x67ef8585.
-//
-// Solidity: function currPaymentCalculationEndTimestamp() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) CurrPaymentCalculationEndTimestamp(opts *bind.CallOpts) (uint64, error) {
-	var out []interface{}
-	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "currPaymentCalculationEndTimestamp")
-
-	if err != nil {
-		return *new(uint64), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
-
-	return out0, err
-
-}
-
-// CurrPaymentCalculationEndTimestamp is a free data retrieval call binding the contract method 0x67ef8585.
-//
-// Solidity: function currPaymentCalculationEndTimestamp() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) CurrPaymentCalculationEndTimestamp() (uint64, error) {
-	return _ContractIPaymentCoordinator.Contract.CurrPaymentCalculationEndTimestamp(&_ContractIPaymentCoordinator.CallOpts)
-}
-
-// CurrPaymentCalculationEndTimestamp is a free data retrieval call binding the contract method 0x67ef8585.
-//
-// Solidity: function currPaymentCalculationEndTimestamp() view returns(uint64)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) CurrPaymentCalculationEndTimestamp() (uint64, error) {
-	return _ContractIPaymentCoordinator.Contract.CurrPaymentCalculationEndTimestamp(&_ContractIPaymentCoordinator.CallOpts)
-}
-
-// GetRootIndexFromHash is a free data retrieval call binding the contract method 0xe810ce21.
-//
-// Solidity: function getRootIndexFromHash(bytes32 rootHash) view returns(uint32)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) GetRootIndexFromHash(opts *bind.CallOpts, rootHash [32]byte) (uint32, error) {
-	var out []interface{}
-	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "getRootIndexFromHash", rootHash)
-
-	if err != nil {
-		return *new(uint32), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
-
-	return out0, err
-
-}
-
-// GetRootIndexFromHash is a free data retrieval call binding the contract method 0xe810ce21.
-//
-// Solidity: function getRootIndexFromHash(bytes32 rootHash) view returns(uint32)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) GetRootIndexFromHash(rootHash [32]byte) (uint32, error) {
-	return _ContractIPaymentCoordinator.Contract.GetRootIndexFromHash(&_ContractIPaymentCoordinator.CallOpts, rootHash)
-}
-
-// GetRootIndexFromHash is a free data retrieval call binding the contract method 0xe810ce21.
-//
-// Solidity: function getRootIndexFromHash(bytes32 rootHash) view returns(uint32)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) GetRootIndexFromHash(rootHash [32]byte) (uint32, error) {
-	return _ContractIPaymentCoordinator.Contract.GetRootIndexFromHash(&_ContractIPaymentCoordinator.CallOpts, rootHash)
-}
-
 // GlobalOperatorCommissionBips is a free data retrieval call binding the contract method 0x092db007.
 //
 // Solidity: function globalOperatorCommissionBips() view returns(uint16)
@@ -650,6 +588,37 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) GlobalOp
 // Solidity: function globalOperatorCommissionBips() view returns(uint16)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) GlobalOperatorCommissionBips() (uint16, error) {
 	return _ContractIPaymentCoordinator.Contract.GlobalOperatorCommissionBips(&_ContractIPaymentCoordinator.CallOpts)
+}
+
+// OperatorCommissionBips is a free data retrieval call binding the contract method 0x22f19a64.
+//
+// Solidity: function operatorCommissionBips(address operator, address avs) view returns(uint16)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCaller) OperatorCommissionBips(opts *bind.CallOpts, operator common.Address, avs common.Address) (uint16, error) {
+	var out []interface{}
+	err := _ContractIPaymentCoordinator.contract.Call(opts, &out, "operatorCommissionBips", operator, avs)
+
+	if err != nil {
+		return *new(uint16), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint16)).(*uint16)
+
+	return out0, err
+
+}
+
+// OperatorCommissionBips is a free data retrieval call binding the contract method 0x22f19a64.
+//
+// Solidity: function operatorCommissionBips(address operator, address avs) view returns(uint16)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) OperatorCommissionBips(operator common.Address, avs common.Address) (uint16, error) {
+	return _ContractIPaymentCoordinator.Contract.OperatorCommissionBips(&_ContractIPaymentCoordinator.CallOpts, operator, avs)
+}
+
+// OperatorCommissionBips is a free data retrieval call binding the contract method 0x22f19a64.
+//
+// Solidity: function operatorCommissionBips(address operator, address avs) view returns(uint16)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) OperatorCommissionBips(operator common.Address, avs common.Address) (uint16, error) {
+	return _ContractIPaymentCoordinator.Contract.OperatorCommissionBips(&_ContractIPaymentCoordinator.CallOpts, operator, avs)
 }
 
 // PaymentUpdater is a free data retrieval call binding the contract method 0x66d3b16b.
@@ -683,87 +652,87 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorCallerSession) Pa
 	return _ContractIPaymentCoordinator.Contract.PaymentUpdater(&_ContractIPaymentCoordinator.CallOpts)
 }
 
-// PayAllForRange is a paid mutator transaction binding the contract method 0x1f525c0a.
+// PayAllForRange is a paid mutator transaction binding the contract method 0xb5715284.
 //
-// Solidity: function payAllForRange(((address,uint96)[],address,uint256,uint64,uint64)[] rangePayment) returns()
+// Solidity: function payAllForRange(((address,uint96)[],address,uint256,uint32,uint32)[] rangePayment) returns()
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) PayAllForRange(opts *bind.TransactOpts, rangePayment []IPaymentCoordinatorRangePayment) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.contract.Transact(opts, "payAllForRange", rangePayment)
 }
 
-// PayAllForRange is a paid mutator transaction binding the contract method 0x1f525c0a.
+// PayAllForRange is a paid mutator transaction binding the contract method 0xb5715284.
 //
-// Solidity: function payAllForRange(((address,uint96)[],address,uint256,uint64,uint64)[] rangePayment) returns()
+// Solidity: function payAllForRange(((address,uint96)[],address,uint256,uint32,uint32)[] rangePayment) returns()
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) PayAllForRange(rangePayment []IPaymentCoordinatorRangePayment) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.PayAllForRange(&_ContractIPaymentCoordinator.TransactOpts, rangePayment)
 }
 
-// PayAllForRange is a paid mutator transaction binding the contract method 0x1f525c0a.
+// PayAllForRange is a paid mutator transaction binding the contract method 0xb5715284.
 //
-// Solidity: function payAllForRange(((address,uint96)[],address,uint256,uint64,uint64)[] rangePayment) returns()
+// Solidity: function payAllForRange(((address,uint96)[],address,uint256,uint32,uint32)[] rangePayment) returns()
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) PayAllForRange(rangePayment []IPaymentCoordinatorRangePayment) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.PayAllForRange(&_ContractIPaymentCoordinator.TransactOpts, rangePayment)
 }
 
-// PayForRange is a paid mutator transaction binding the contract method 0x42b5c010.
+// PayForRange is a paid mutator transaction binding the contract method 0x1b445516.
 //
-// Solidity: function payForRange(((address,uint96)[],address,uint256,uint64,uint64)[] rangePayments) returns()
+// Solidity: function payForRange(((address,uint96)[],address,uint256,uint32,uint32)[] rangePayments) returns()
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) PayForRange(opts *bind.TransactOpts, rangePayments []IPaymentCoordinatorRangePayment) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.contract.Transact(opts, "payForRange", rangePayments)
 }
 
-// PayForRange is a paid mutator transaction binding the contract method 0x42b5c010.
+// PayForRange is a paid mutator transaction binding the contract method 0x1b445516.
 //
-// Solidity: function payForRange(((address,uint96)[],address,uint256,uint64,uint64)[] rangePayments) returns()
+// Solidity: function payForRange(((address,uint96)[],address,uint256,uint32,uint32)[] rangePayments) returns()
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) PayForRange(rangePayments []IPaymentCoordinatorRangePayment) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.PayForRange(&_ContractIPaymentCoordinator.TransactOpts, rangePayments)
 }
 
-// PayForRange is a paid mutator transaction binding the contract method 0x42b5c010.
+// PayForRange is a paid mutator transaction binding the contract method 0x1b445516.
 //
-// Solidity: function payForRange(((address,uint96)[],address,uint256,uint64,uint64)[] rangePayments) returns()
+// Solidity: function payForRange(((address,uint96)[],address,uint256,uint32,uint32)[] rangePayments) returns()
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) PayForRange(rangePayments []IPaymentCoordinatorRangePayment) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.PayForRange(&_ContractIPaymentCoordinator.TransactOpts, rangePayments)
 }
 
-// ProcessClaim is a paid mutator transaction binding the contract method 0x160bc83f.
+// ProcessClaim is a paid mutator transaction binding the contract method 0x3ccc861d.
 //
-// Solidity: function processClaim((uint32,uint32,bytes,(address,bytes32),uint32[],bytes[],(address,uint256)[]) claim) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) ProcessClaim(opts *bind.TransactOpts, claim IPaymentCoordinatorPaymentMerkleClaim) (*types.Transaction, error) {
-	return _ContractIPaymentCoordinator.contract.Transact(opts, "processClaim", claim)
+// Solidity: function processClaim((uint32,uint32,bytes,(address,bytes32),uint32[],bytes[],(address,uint256)[]) claim, address recipient) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) ProcessClaim(opts *bind.TransactOpts, claim IPaymentCoordinatorPaymentMerkleClaim, recipient common.Address) (*types.Transaction, error) {
+	return _ContractIPaymentCoordinator.contract.Transact(opts, "processClaim", claim, recipient)
 }
 
-// ProcessClaim is a paid mutator transaction binding the contract method 0x160bc83f.
+// ProcessClaim is a paid mutator transaction binding the contract method 0x3ccc861d.
 //
-// Solidity: function processClaim((uint32,uint32,bytes,(address,bytes32),uint32[],bytes[],(address,uint256)[]) claim) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) ProcessClaim(claim IPaymentCoordinatorPaymentMerkleClaim) (*types.Transaction, error) {
-	return _ContractIPaymentCoordinator.Contract.ProcessClaim(&_ContractIPaymentCoordinator.TransactOpts, claim)
+// Solidity: function processClaim((uint32,uint32,bytes,(address,bytes32),uint32[],bytes[],(address,uint256)[]) claim, address recipient) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) ProcessClaim(claim IPaymentCoordinatorPaymentMerkleClaim, recipient common.Address) (*types.Transaction, error) {
+	return _ContractIPaymentCoordinator.Contract.ProcessClaim(&_ContractIPaymentCoordinator.TransactOpts, claim, recipient)
 }
 
-// ProcessClaim is a paid mutator transaction binding the contract method 0x160bc83f.
+// ProcessClaim is a paid mutator transaction binding the contract method 0x3ccc861d.
 //
-// Solidity: function processClaim((uint32,uint32,bytes,(address,bytes32),uint32[],bytes[],(address,uint256)[]) claim) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) ProcessClaim(claim IPaymentCoordinatorPaymentMerkleClaim) (*types.Transaction, error) {
-	return _ContractIPaymentCoordinator.Contract.ProcessClaim(&_ContractIPaymentCoordinator.TransactOpts, claim)
+// Solidity: function processClaim((uint32,uint32,bytes,(address,bytes32),uint32[],bytes[],(address,uint256)[]) claim, address recipient) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) ProcessClaim(claim IPaymentCoordinatorPaymentMerkleClaim, recipient common.Address) (*types.Transaction, error) {
+	return _ContractIPaymentCoordinator.Contract.ProcessClaim(&_ContractIPaymentCoordinator.TransactOpts, claim, recipient)
 }
 
-// SetActivationDelay is a paid mutator transaction binding the contract method 0x96b896eb.
+// SetActivationDelay is a paid mutator transaction binding the contract method 0x58baaa3e.
 //
-// Solidity: function setActivationDelay(uint64 _activationDelay) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) SetActivationDelay(opts *bind.TransactOpts, _activationDelay uint64) (*types.Transaction, error) {
+// Solidity: function setActivationDelay(uint32 _activationDelay) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) SetActivationDelay(opts *bind.TransactOpts, _activationDelay uint32) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.contract.Transact(opts, "setActivationDelay", _activationDelay)
 }
 
-// SetActivationDelay is a paid mutator transaction binding the contract method 0x96b896eb.
+// SetActivationDelay is a paid mutator transaction binding the contract method 0x58baaa3e.
 //
-// Solidity: function setActivationDelay(uint64 _activationDelay) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) SetActivationDelay(_activationDelay uint64) (*types.Transaction, error) {
+// Solidity: function setActivationDelay(uint32 _activationDelay) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) SetActivationDelay(_activationDelay uint32) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.SetActivationDelay(&_ContractIPaymentCoordinator.TransactOpts, _activationDelay)
 }
 
-// SetActivationDelay is a paid mutator transaction binding the contract method 0x96b896eb.
+// SetActivationDelay is a paid mutator transaction binding the contract method 0x58baaa3e.
 //
-// Solidity: function setActivationDelay(uint64 _activationDelay) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) SetActivationDelay(_activationDelay uint64) (*types.Transaction, error) {
+// Solidity: function setActivationDelay(uint32 _activationDelay) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) SetActivationDelay(_activationDelay uint32) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.SetActivationDelay(&_ContractIPaymentCoordinator.TransactOpts, _activationDelay)
 }
 
@@ -809,6 +778,27 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession
 	return _ContractIPaymentCoordinator.Contract.SetGlobalOperatorCommission(&_ContractIPaymentCoordinator.TransactOpts, _globalCommissionBips)
 }
 
+// SetPayAllForRangeSubmitter is a paid mutator transaction binding the contract method 0xec1680de.
+//
+// Solidity: function setPayAllForRangeSubmitter(address _submitter, bool _newValue) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) SetPayAllForRangeSubmitter(opts *bind.TransactOpts, _submitter common.Address, _newValue bool) (*types.Transaction, error) {
+	return _ContractIPaymentCoordinator.contract.Transact(opts, "setPayAllForRangeSubmitter", _submitter, _newValue)
+}
+
+// SetPayAllForRangeSubmitter is a paid mutator transaction binding the contract method 0xec1680de.
+//
+// Solidity: function setPayAllForRangeSubmitter(address _submitter, bool _newValue) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) SetPayAllForRangeSubmitter(_submitter common.Address, _newValue bool) (*types.Transaction, error) {
+	return _ContractIPaymentCoordinator.Contract.SetPayAllForRangeSubmitter(&_ContractIPaymentCoordinator.TransactOpts, _submitter, _newValue)
+}
+
+// SetPayAllForRangeSubmitter is a paid mutator transaction binding the contract method 0xec1680de.
+//
+// Solidity: function setPayAllForRangeSubmitter(address _submitter, bool _newValue) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) SetPayAllForRangeSubmitter(_submitter common.Address, _newValue bool) (*types.Transaction, error) {
+	return _ContractIPaymentCoordinator.Contract.SetPayAllForRangeSubmitter(&_ContractIPaymentCoordinator.TransactOpts, _submitter, _newValue)
+}
+
 // SetPaymentUpdater is a paid mutator transaction binding the contract method 0x18190f53.
 //
 // Solidity: function setPaymentUpdater(address _paymentUpdater) returns()
@@ -830,24 +820,24 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession
 	return _ContractIPaymentCoordinator.Contract.SetPaymentUpdater(&_ContractIPaymentCoordinator.TransactOpts, _paymentUpdater)
 }
 
-// SubmitRoot is a paid mutator transaction binding the contract method 0xa323aa31.
+// SubmitRoot is a paid mutator transaction binding the contract method 0x3efe1db6.
 //
-// Solidity: function submitRoot(bytes32 root, uint64 paymentCalculationEndTimestamp) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) SubmitRoot(opts *bind.TransactOpts, root [32]byte, paymentCalculationEndTimestamp uint64) (*types.Transaction, error) {
+// Solidity: function submitRoot(bytes32 root, uint32 paymentCalculationEndTimestamp) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactor) SubmitRoot(opts *bind.TransactOpts, root [32]byte, paymentCalculationEndTimestamp uint32) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.contract.Transact(opts, "submitRoot", root, paymentCalculationEndTimestamp)
 }
 
-// SubmitRoot is a paid mutator transaction binding the contract method 0xa323aa31.
+// SubmitRoot is a paid mutator transaction binding the contract method 0x3efe1db6.
 //
-// Solidity: function submitRoot(bytes32 root, uint64 paymentCalculationEndTimestamp) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) SubmitRoot(root [32]byte, paymentCalculationEndTimestamp uint64) (*types.Transaction, error) {
+// Solidity: function submitRoot(bytes32 root, uint32 paymentCalculationEndTimestamp) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorSession) SubmitRoot(root [32]byte, paymentCalculationEndTimestamp uint32) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.SubmitRoot(&_ContractIPaymentCoordinator.TransactOpts, root, paymentCalculationEndTimestamp)
 }
 
-// SubmitRoot is a paid mutator transaction binding the contract method 0xa323aa31.
+// SubmitRoot is a paid mutator transaction binding the contract method 0x3efe1db6.
 //
-// Solidity: function submitRoot(bytes32 root, uint64 paymentCalculationEndTimestamp) returns()
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) SubmitRoot(root [32]byte, paymentCalculationEndTimestamp uint64) (*types.Transaction, error) {
+// Solidity: function submitRoot(bytes32 root, uint32 paymentCalculationEndTimestamp) returns()
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorTransactorSession) SubmitRoot(root [32]byte, paymentCalculationEndTimestamp uint32) (*types.Transaction, error) {
 	return _ContractIPaymentCoordinator.Contract.SubmitRoot(&_ContractIPaymentCoordinator.TransactOpts, root, paymentCalculationEndTimestamp)
 }
 
@@ -920,14 +910,14 @@ func (it *ContractIPaymentCoordinatorActivationDelaySetIterator) Close() error {
 
 // ContractIPaymentCoordinatorActivationDelaySet represents a ActivationDelaySet event raised by the ContractIPaymentCoordinator contract.
 type ContractIPaymentCoordinatorActivationDelaySet struct {
-	OldActivationDelay uint64
-	NewActivationDelay uint64
+	OldActivationDelay uint32
+	NewActivationDelay uint32
 	Raw                types.Log // Blockchain specific contextual infos
 }
 
-// FilterActivationDelaySet is a free log retrieval operation binding the contract event 0x29fabdd5e710c2b0282fcc042164a54b68bd783f561a1f82033b1270e5541dbb.
+// FilterActivationDelaySet is a free log retrieval operation binding the contract event 0xaf557c6c02c208794817a705609cfa935f827312a1adfdd26494b6b95dd2b4b3.
 //
-// Solidity: event ActivationDelaySet(uint64 oldActivationDelay, uint64 newActivationDelay)
+// Solidity: event ActivationDelaySet(uint32 oldActivationDelay, uint32 newActivationDelay)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterActivationDelaySet(opts *bind.FilterOpts) (*ContractIPaymentCoordinatorActivationDelaySetIterator, error) {
 
 	logs, sub, err := _ContractIPaymentCoordinator.contract.FilterLogs(opts, "ActivationDelaySet")
@@ -937,9 +927,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterA
 	return &ContractIPaymentCoordinatorActivationDelaySetIterator{contract: _ContractIPaymentCoordinator.contract, event: "ActivationDelaySet", logs: logs, sub: sub}, nil
 }
 
-// WatchActivationDelaySet is a free log subscription operation binding the contract event 0x29fabdd5e710c2b0282fcc042164a54b68bd783f561a1f82033b1270e5541dbb.
+// WatchActivationDelaySet is a free log subscription operation binding the contract event 0xaf557c6c02c208794817a705609cfa935f827312a1adfdd26494b6b95dd2b4b3.
 //
-// Solidity: event ActivationDelaySet(uint64 oldActivationDelay, uint64 newActivationDelay)
+// Solidity: event ActivationDelaySet(uint32 oldActivationDelay, uint32 newActivationDelay)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchActivationDelaySet(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorActivationDelaySet) (event.Subscription, error) {
 
 	logs, sub, err := _ContractIPaymentCoordinator.contract.WatchLogs(opts, "ActivationDelaySet")
@@ -974,147 +964,12 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchAc
 	}), nil
 }
 
-// ParseActivationDelaySet is a log parse operation binding the contract event 0x29fabdd5e710c2b0282fcc042164a54b68bd783f561a1f82033b1270e5541dbb.
+// ParseActivationDelaySet is a log parse operation binding the contract event 0xaf557c6c02c208794817a705609cfa935f827312a1adfdd26494b6b95dd2b4b3.
 //
-// Solidity: event ActivationDelaySet(uint64 oldActivationDelay, uint64 newActivationDelay)
+// Solidity: event ActivationDelaySet(uint32 oldActivationDelay, uint32 newActivationDelay)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) ParseActivationDelaySet(log types.Log) (*ContractIPaymentCoordinatorActivationDelaySet, error) {
 	event := new(ContractIPaymentCoordinatorActivationDelaySet)
 	if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "ActivationDelaySet", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator is returned from FilterCalculationIntervalSecondsSet and is used to iterate over the raw logs and unpacked data for CalculationIntervalSecondsSet events raised by the ContractIPaymentCoordinator contract.
-type ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator struct {
-	Event *ContractIPaymentCoordinatorCalculationIntervalSecondsSet // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(ContractIPaymentCoordinatorCalculationIntervalSecondsSet)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(ContractIPaymentCoordinatorCalculationIntervalSecondsSet)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// ContractIPaymentCoordinatorCalculationIntervalSecondsSet represents a CalculationIntervalSecondsSet event raised by the ContractIPaymentCoordinator contract.
-type ContractIPaymentCoordinatorCalculationIntervalSecondsSet struct {
-	OldCalculationIntervalSeconds uint64
-	NewCalculationIntervalSeconds uint64
-	Raw                           types.Log // Blockchain specific contextual infos
-}
-
-// FilterCalculationIntervalSecondsSet is a free log retrieval operation binding the contract event 0x247db8a3d2cd6fa855756642ee37072dc401a228c0c25bde1fa452a2e4739b3c.
-//
-// Solidity: event CalculationIntervalSecondsSet(uint64 oldCalculationIntervalSeconds, uint64 newCalculationIntervalSeconds)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterCalculationIntervalSecondsSet(opts *bind.FilterOpts) (*ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator, error) {
-
-	logs, sub, err := _ContractIPaymentCoordinator.contract.FilterLogs(opts, "CalculationIntervalSecondsSet")
-	if err != nil {
-		return nil, err
-	}
-	return &ContractIPaymentCoordinatorCalculationIntervalSecondsSetIterator{contract: _ContractIPaymentCoordinator.contract, event: "CalculationIntervalSecondsSet", logs: logs, sub: sub}, nil
-}
-
-// WatchCalculationIntervalSecondsSet is a free log subscription operation binding the contract event 0x247db8a3d2cd6fa855756642ee37072dc401a228c0c25bde1fa452a2e4739b3c.
-//
-// Solidity: event CalculationIntervalSecondsSet(uint64 oldCalculationIntervalSeconds, uint64 newCalculationIntervalSeconds)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchCalculationIntervalSecondsSet(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorCalculationIntervalSecondsSet) (event.Subscription, error) {
-
-	logs, sub, err := _ContractIPaymentCoordinator.contract.WatchLogs(opts, "CalculationIntervalSecondsSet")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(ContractIPaymentCoordinatorCalculationIntervalSecondsSet)
-				if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "CalculationIntervalSecondsSet", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseCalculationIntervalSecondsSet is a log parse operation binding the contract event 0x247db8a3d2cd6fa855756642ee37072dc401a228c0c25bde1fa452a2e4739b3c.
-//
-// Solidity: event CalculationIntervalSecondsSet(uint64 oldCalculationIntervalSeconds, uint64 newCalculationIntervalSeconds)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) ParseCalculationIntervalSecondsSet(log types.Log) (*ContractIPaymentCoordinatorCalculationIntervalSecondsSet, error) {
-	event := new(ContractIPaymentCoordinatorCalculationIntervalSecondsSet)
-	if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "CalculationIntervalSecondsSet", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1354,15 +1209,15 @@ func (it *ContractIPaymentCoordinatorDistributionRootSubmittedIterator) Close() 
 type ContractIPaymentCoordinatorDistributionRootSubmitted struct {
 	RootIndex                      uint32
 	Root                           [32]byte
-	PaymentCalculationEndTimestamp uint64
-	ActivatedAt                    uint64
+	PaymentCalculationEndTimestamp uint32
+	ActivatedAt                    uint32
 	Raw                            types.Log // Blockchain specific contextual infos
 }
 
-// FilterDistributionRootSubmitted is a free log retrieval operation binding the contract event 0xe761fd6052ea06161bb50ec7768c4ae09bb59c30b15332240be2433c25ee12e4.
+// FilterDistributionRootSubmitted is a free log retrieval operation binding the contract event 0xecd866c3c158fa00bf34d803d5f6023000b57080bcb48af004c2b4b46b3afd08.
 //
-// Solidity: event DistributionRootSubmitted(uint32 indexed rootIndex, bytes32 indexed root, uint64 paymentCalculationEndTimestamp, uint64 activatedAt)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterDistributionRootSubmitted(opts *bind.FilterOpts, rootIndex []uint32, root [][32]byte) (*ContractIPaymentCoordinatorDistributionRootSubmittedIterator, error) {
+// Solidity: event DistributionRootSubmitted(uint32 indexed rootIndex, bytes32 indexed root, uint32 indexed paymentCalculationEndTimestamp, uint32 activatedAt)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterDistributionRootSubmitted(opts *bind.FilterOpts, rootIndex []uint32, root [][32]byte, paymentCalculationEndTimestamp []uint32) (*ContractIPaymentCoordinatorDistributionRootSubmittedIterator, error) {
 
 	var rootIndexRule []interface{}
 	for _, rootIndexItem := range rootIndex {
@@ -1372,18 +1227,22 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterD
 	for _, rootItem := range root {
 		rootRule = append(rootRule, rootItem)
 	}
+	var paymentCalculationEndTimestampRule []interface{}
+	for _, paymentCalculationEndTimestampItem := range paymentCalculationEndTimestamp {
+		paymentCalculationEndTimestampRule = append(paymentCalculationEndTimestampRule, paymentCalculationEndTimestampItem)
+	}
 
-	logs, sub, err := _ContractIPaymentCoordinator.contract.FilterLogs(opts, "DistributionRootSubmitted", rootIndexRule, rootRule)
+	logs, sub, err := _ContractIPaymentCoordinator.contract.FilterLogs(opts, "DistributionRootSubmitted", rootIndexRule, rootRule, paymentCalculationEndTimestampRule)
 	if err != nil {
 		return nil, err
 	}
 	return &ContractIPaymentCoordinatorDistributionRootSubmittedIterator{contract: _ContractIPaymentCoordinator.contract, event: "DistributionRootSubmitted", logs: logs, sub: sub}, nil
 }
 
-// WatchDistributionRootSubmitted is a free log subscription operation binding the contract event 0xe761fd6052ea06161bb50ec7768c4ae09bb59c30b15332240be2433c25ee12e4.
+// WatchDistributionRootSubmitted is a free log subscription operation binding the contract event 0xecd866c3c158fa00bf34d803d5f6023000b57080bcb48af004c2b4b46b3afd08.
 //
-// Solidity: event DistributionRootSubmitted(uint32 indexed rootIndex, bytes32 indexed root, uint64 paymentCalculationEndTimestamp, uint64 activatedAt)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchDistributionRootSubmitted(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorDistributionRootSubmitted, rootIndex []uint32, root [][32]byte) (event.Subscription, error) {
+// Solidity: event DistributionRootSubmitted(uint32 indexed rootIndex, bytes32 indexed root, uint32 indexed paymentCalculationEndTimestamp, uint32 activatedAt)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchDistributionRootSubmitted(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorDistributionRootSubmitted, rootIndex []uint32, root [][32]byte, paymentCalculationEndTimestamp []uint32) (event.Subscription, error) {
 
 	var rootIndexRule []interface{}
 	for _, rootIndexItem := range rootIndex {
@@ -1393,8 +1252,12 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchDi
 	for _, rootItem := range root {
 		rootRule = append(rootRule, rootItem)
 	}
+	var paymentCalculationEndTimestampRule []interface{}
+	for _, paymentCalculationEndTimestampItem := range paymentCalculationEndTimestamp {
+		paymentCalculationEndTimestampRule = append(paymentCalculationEndTimestampRule, paymentCalculationEndTimestampItem)
+	}
 
-	logs, sub, err := _ContractIPaymentCoordinator.contract.WatchLogs(opts, "DistributionRootSubmitted", rootIndexRule, rootRule)
+	logs, sub, err := _ContractIPaymentCoordinator.contract.WatchLogs(opts, "DistributionRootSubmitted", rootIndexRule, rootRule, paymentCalculationEndTimestampRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1426,9 +1289,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchDi
 	}), nil
 }
 
-// ParseDistributionRootSubmitted is a log parse operation binding the contract event 0xe761fd6052ea06161bb50ec7768c4ae09bb59c30b15332240be2433c25ee12e4.
+// ParseDistributionRootSubmitted is a log parse operation binding the contract event 0xecd866c3c158fa00bf34d803d5f6023000b57080bcb48af004c2b4b46b3afd08.
 //
-// Solidity: event DistributionRootSubmitted(uint32 indexed rootIndex, bytes32 indexed root, uint64 paymentCalculationEndTimestamp, uint64 activatedAt)
+// Solidity: event DistributionRootSubmitted(uint32 indexed rootIndex, bytes32 indexed root, uint32 indexed paymentCalculationEndTimestamp, uint32 activatedAt)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) ParseDistributionRootSubmitted(log types.Log) (*ContractIPaymentCoordinatorDistributionRootSubmitted, error) {
 	event := new(ContractIPaymentCoordinatorDistributionRootSubmitted)
 	if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "DistributionRootSubmitted", log); err != nil {
@@ -1804,39 +1667,59 @@ func (it *ContractIPaymentCoordinatorPaymentClaimedIterator) Close() error {
 
 // ContractIPaymentCoordinatorPaymentClaimed represents a PaymentClaimed event raised by the ContractIPaymentCoordinator contract.
 type ContractIPaymentCoordinatorPaymentClaimed struct {
-	Root [32]byte
-	Leaf IPaymentCoordinatorTokenTreeMerkleLeaf
-	Raw  types.Log // Blockchain specific contextual infos
+	Root          [32]byte
+	Earner        common.Address
+	Claimer       common.Address
+	Recipient     common.Address
+	Token         common.Address
+	ClaimedAmount *big.Int
+	Raw           types.Log // Blockchain specific contextual infos
 }
 
-// FilterPaymentClaimed is a free log retrieval operation binding the contract event 0x65c3ec778ea0d5ecd945eb3ccba33dbb4950974e8adb43029e234656486ccb35.
+// FilterPaymentClaimed is a free log retrieval operation binding the contract event 0xbff1e5a32b3f6d3b3c0a7e675ead2091fea820852f35a77abdd6d2420bec4778.
 //
-// Solidity: event PaymentClaimed(bytes32 indexed root, (address,uint256) leaf)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterPaymentClaimed(opts *bind.FilterOpts, root [][32]byte) (*ContractIPaymentCoordinatorPaymentClaimedIterator, error) {
+// Solidity: event PaymentClaimed(bytes32 root, address indexed earner, address indexed claimer, address indexed recipient, address token, uint256 claimedAmount)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterPaymentClaimed(opts *bind.FilterOpts, earner []common.Address, claimer []common.Address, recipient []common.Address) (*ContractIPaymentCoordinatorPaymentClaimedIterator, error) {
 
-	var rootRule []interface{}
-	for _, rootItem := range root {
-		rootRule = append(rootRule, rootItem)
+	var earnerRule []interface{}
+	for _, earnerItem := range earner {
+		earnerRule = append(earnerRule, earnerItem)
+	}
+	var claimerRule []interface{}
+	for _, claimerItem := range claimer {
+		claimerRule = append(claimerRule, claimerItem)
+	}
+	var recipientRule []interface{}
+	for _, recipientItem := range recipient {
+		recipientRule = append(recipientRule, recipientItem)
 	}
 
-	logs, sub, err := _ContractIPaymentCoordinator.contract.FilterLogs(opts, "PaymentClaimed", rootRule)
+	logs, sub, err := _ContractIPaymentCoordinator.contract.FilterLogs(opts, "PaymentClaimed", earnerRule, claimerRule, recipientRule)
 	if err != nil {
 		return nil, err
 	}
 	return &ContractIPaymentCoordinatorPaymentClaimedIterator{contract: _ContractIPaymentCoordinator.contract, event: "PaymentClaimed", logs: logs, sub: sub}, nil
 }
 
-// WatchPaymentClaimed is a free log subscription operation binding the contract event 0x65c3ec778ea0d5ecd945eb3ccba33dbb4950974e8adb43029e234656486ccb35.
+// WatchPaymentClaimed is a free log subscription operation binding the contract event 0xbff1e5a32b3f6d3b3c0a7e675ead2091fea820852f35a77abdd6d2420bec4778.
 //
-// Solidity: event PaymentClaimed(bytes32 indexed root, (address,uint256) leaf)
-func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchPaymentClaimed(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorPaymentClaimed, root [][32]byte) (event.Subscription, error) {
+// Solidity: event PaymentClaimed(bytes32 root, address indexed earner, address indexed claimer, address indexed recipient, address token, uint256 claimedAmount)
+func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchPaymentClaimed(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorPaymentClaimed, earner []common.Address, claimer []common.Address, recipient []common.Address) (event.Subscription, error) {
 
-	var rootRule []interface{}
-	for _, rootItem := range root {
-		rootRule = append(rootRule, rootItem)
+	var earnerRule []interface{}
+	for _, earnerItem := range earner {
+		earnerRule = append(earnerRule, earnerItem)
+	}
+	var claimerRule []interface{}
+	for _, claimerItem := range claimer {
+		claimerRule = append(claimerRule, claimerItem)
+	}
+	var recipientRule []interface{}
+	for _, recipientItem := range recipient {
+		recipientRule = append(recipientRule, recipientItem)
 	}
 
-	logs, sub, err := _ContractIPaymentCoordinator.contract.WatchLogs(opts, "PaymentClaimed", rootRule)
+	logs, sub, err := _ContractIPaymentCoordinator.contract.WatchLogs(opts, "PaymentClaimed", earnerRule, claimerRule, recipientRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1868,9 +1751,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchPa
 	}), nil
 }
 
-// ParsePaymentClaimed is a log parse operation binding the contract event 0x65c3ec778ea0d5ecd945eb3ccba33dbb4950974e8adb43029e234656486ccb35.
+// ParsePaymentClaimed is a log parse operation binding the contract event 0xbff1e5a32b3f6d3b3c0a7e675ead2091fea820852f35a77abdd6d2420bec4778.
 //
-// Solidity: event PaymentClaimed(bytes32 indexed root, (address,uint256) leaf)
+// Solidity: event PaymentClaimed(bytes32 root, address indexed earner, address indexed claimer, address indexed recipient, address token, uint256 claimedAmount)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) ParsePaymentClaimed(log types.Log) (*ContractIPaymentCoordinatorPaymentClaimed, error) {
 	event := new(ContractIPaymentCoordinatorPaymentClaimed)
 	if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "PaymentClaimed", log); err != nil {
@@ -2109,9 +1992,9 @@ type ContractIPaymentCoordinatorRangePaymentCreated struct {
 	Raw              types.Log // Blockchain specific contextual infos
 }
 
-// FilterRangePaymentCreated is a free log retrieval operation binding the contract event 0x6caa185f3cbe2749467bfbe7df9a7674bb65d8a78c5626b5464f880fa4bac48f.
+// FilterRangePaymentCreated is a free log retrieval operation binding the contract event 0x2a0659fa4c38e0075469a0e0dd737e045dc316ffd6cb6e68755c119ee0882aea.
 //
-// Solidity: event RangePaymentCreated(address indexed avs, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint64,uint64) rangePayment)
+// Solidity: event RangePaymentCreated(address indexed avs, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint32,uint32) rangePayment)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterRangePaymentCreated(opts *bind.FilterOpts, avs []common.Address, paymentNonce []*big.Int, rangePaymentHash [][32]byte) (*ContractIPaymentCoordinatorRangePaymentCreatedIterator, error) {
 
 	var avsRule []interface{}
@@ -2134,9 +2017,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterR
 	return &ContractIPaymentCoordinatorRangePaymentCreatedIterator{contract: _ContractIPaymentCoordinator.contract, event: "RangePaymentCreated", logs: logs, sub: sub}, nil
 }
 
-// WatchRangePaymentCreated is a free log subscription operation binding the contract event 0x6caa185f3cbe2749467bfbe7df9a7674bb65d8a78c5626b5464f880fa4bac48f.
+// WatchRangePaymentCreated is a free log subscription operation binding the contract event 0x2a0659fa4c38e0075469a0e0dd737e045dc316ffd6cb6e68755c119ee0882aea.
 //
-// Solidity: event RangePaymentCreated(address indexed avs, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint64,uint64) rangePayment)
+// Solidity: event RangePaymentCreated(address indexed avs, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint32,uint32) rangePayment)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchRangePaymentCreated(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorRangePaymentCreated, avs []common.Address, paymentNonce []*big.Int, rangePaymentHash [][32]byte) (event.Subscription, error) {
 
 	var avsRule []interface{}
@@ -2184,9 +2067,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchRa
 	}), nil
 }
 
-// ParseRangePaymentCreated is a log parse operation binding the contract event 0x6caa185f3cbe2749467bfbe7df9a7674bb65d8a78c5626b5464f880fa4bac48f.
+// ParseRangePaymentCreated is a log parse operation binding the contract event 0x2a0659fa4c38e0075469a0e0dd737e045dc316ffd6cb6e68755c119ee0882aea.
 //
-// Solidity: event RangePaymentCreated(address indexed avs, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint64,uint64) rangePayment)
+// Solidity: event RangePaymentCreated(address indexed avs, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint32,uint32) rangePayment)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) ParseRangePaymentCreated(log types.Log) (*ContractIPaymentCoordinatorRangePaymentCreated, error) {
 	event := new(ContractIPaymentCoordinatorRangePaymentCreated)
 	if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "RangePaymentCreated", log); err != nil {
@@ -2272,9 +2155,9 @@ type ContractIPaymentCoordinatorRangePaymentForAllCreated struct {
 	Raw              types.Log // Blockchain specific contextual infos
 }
 
-// FilterRangePaymentForAllCreated is a free log retrieval operation binding the contract event 0xb4139d2f31d7b13944e26e3e632ccd1f8f4845ba446870f93f0ae0fda89e1eeb.
+// FilterRangePaymentForAllCreated is a free log retrieval operation binding the contract event 0xbc0782940ec5871f66c5490ef957f44d19a9adac1dac18b946ad0dd6579c30d6.
 //
-// Solidity: event RangePaymentForAllCreated(address indexed submitter, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint64,uint64) rangePayment)
+// Solidity: event RangePaymentForAllCreated(address indexed submitter, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint32,uint32) rangePayment)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterRangePaymentForAllCreated(opts *bind.FilterOpts, submitter []common.Address, paymentNonce []*big.Int, rangePaymentHash [][32]byte) (*ContractIPaymentCoordinatorRangePaymentForAllCreatedIterator, error) {
 
 	var submitterRule []interface{}
@@ -2297,9 +2180,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) FilterR
 	return &ContractIPaymentCoordinatorRangePaymentForAllCreatedIterator{contract: _ContractIPaymentCoordinator.contract, event: "RangePaymentForAllCreated", logs: logs, sub: sub}, nil
 }
 
-// WatchRangePaymentForAllCreated is a free log subscription operation binding the contract event 0xb4139d2f31d7b13944e26e3e632ccd1f8f4845ba446870f93f0ae0fda89e1eeb.
+// WatchRangePaymentForAllCreated is a free log subscription operation binding the contract event 0xbc0782940ec5871f66c5490ef957f44d19a9adac1dac18b946ad0dd6579c30d6.
 //
-// Solidity: event RangePaymentForAllCreated(address indexed submitter, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint64,uint64) rangePayment)
+// Solidity: event RangePaymentForAllCreated(address indexed submitter, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint32,uint32) rangePayment)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchRangePaymentForAllCreated(opts *bind.WatchOpts, sink chan<- *ContractIPaymentCoordinatorRangePaymentForAllCreated, submitter []common.Address, paymentNonce []*big.Int, rangePaymentHash [][32]byte) (event.Subscription, error) {
 
 	var submitterRule []interface{}
@@ -2347,9 +2230,9 @@ func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) WatchRa
 	}), nil
 }
 
-// ParseRangePaymentForAllCreated is a log parse operation binding the contract event 0xb4139d2f31d7b13944e26e3e632ccd1f8f4845ba446870f93f0ae0fda89e1eeb.
+// ParseRangePaymentForAllCreated is a log parse operation binding the contract event 0xbc0782940ec5871f66c5490ef957f44d19a9adac1dac18b946ad0dd6579c30d6.
 //
-// Solidity: event RangePaymentForAllCreated(address indexed submitter, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint64,uint64) rangePayment)
+// Solidity: event RangePaymentForAllCreated(address indexed submitter, uint256 indexed paymentNonce, bytes32 indexed rangePaymentHash, ((address,uint96)[],address,uint256,uint32,uint32) rangePayment)
 func (_ContractIPaymentCoordinator *ContractIPaymentCoordinatorFilterer) ParseRangePaymentForAllCreated(log types.Log) (*ContractIPaymentCoordinatorRangePaymentForAllCreated, error) {
 	event := new(ContractIPaymentCoordinatorRangePaymentForAllCreated)
 	if err := _ContractIPaymentCoordinator.contract.UnpackLog(event, "RangePaymentForAllCreated", log); err != nil {
