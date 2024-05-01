@@ -66,6 +66,38 @@ func NewDistributionWithData(initJsonData []byte) (*Distribution, error) {
 	return distro, nil
 }
 
+type EarnerLine struct {
+	Earner           string `json:"earner"`
+	Token            string `json:"token"`
+	CumulativeAmount string `json:"cumulative_amount"`
+}
+
+func (d *Distribution) LoadLine(line *EarnerLine) error {
+	earner := gethcommon.HexToAddress(line.Earner)
+	token := gethcommon.HexToAddress(line.Token)
+	cumulativePaymentString := line.CumulativeAmount
+
+	if cumulativePaymentString == "" {
+		cumulativePaymentString = "0"
+	}
+
+	cumulativePayment, ok := new(big.Int).SetString(cumulativePaymentString, 10)
+	if !ok {
+		errorMessage := fmt.Sprintf("not a valid big integer: %s", cumulativePayment)
+		return fmt.Errorf(errorMessage)
+	}
+
+	d.Set(earner, token, cumulativePayment)
+	return nil
+}
+
+func (d *Distribution) LoadFromLines(lines []*EarnerLine) error {
+	for _, line := range lines {
+		d.LoadLine(line)
+	}
+	return nil
+}
+
 func (d *Distribution) MarshalJSON() ([]byte, error) {
 	return d.data.MarshalJSON()
 }
