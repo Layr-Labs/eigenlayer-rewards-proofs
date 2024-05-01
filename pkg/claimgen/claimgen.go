@@ -3,8 +3,8 @@ package claimgen
 import (
 	"errors"
 	"fmt"
-	"github.com/Layr-Labs/eigenlayer-payment-proofs/internal/paymentCoordinator"
 	"github.com/Layr-Labs/eigenlayer-payment-proofs/pkg/distribution"
+	"github.com/Layr-Labs/eigenlayer-payment-proofs/pkg/paymentCoordinator"
 	"github.com/Layr-Labs/eigenlayer-payment-proofs/pkg/utils"
 	gethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/wealdtech/go-merkletree/v2"
