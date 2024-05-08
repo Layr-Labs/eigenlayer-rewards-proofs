@@ -2,8 +2,10 @@ package distribution_test
 
 import (
 	"encoding/hex"
+	"encoding/json"
 	"github.com/Layr-Labs/eigenlayer-payment-proofs/internal/tests"
 	"math/big"
+	"strings"
 	"testing"
 
 	"github.com/Layr-Labs/eigenlayer-payment-proofs/pkg/distribution"
@@ -204,4 +206,21 @@ func TestNewDistributionWithData(t *testing.T) {
 	assert.Len(t, account.Data, 1)
 	addr := common.HexToAddress("0x0D6bA28b9919CfCDb6b233469Cc5Ce30b979e08E")
 	assert.Len(t, tokens[addr].Data, 1)
+}
+
+func TestNewDistributionWithClaimDataLines(t *testing.T) {
+	testClaimsStr := strings.Split(string(tests.TestClaims), "\n")
+
+	earners := make([]*distribution.EarnerLine, 0)
+	for _, e := range testClaimsStr {
+		e = e
+		earner := &distribution.EarnerLine{}
+		err := json.Unmarshal([]byte(e), earner)
+		assert.Nil(t, err)
+		earners = append(earners, earner)
+	}
+	assert.Len(t, earners, 228)
+
+	distro := distribution.NewDistribution()
+	distro.LoadFromLines(earners)
 }
