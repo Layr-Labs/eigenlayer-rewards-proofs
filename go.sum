@@ -1,5 +1,7 @@
 github.com/DataDog/zstd v1.4.5 h1:EndNeuB0l9syBZhut0wns3gV1hL8zX8LIu6ZiVHWLIQ=
 github.com/DataDog/zstd v1.4.5/go.mod h1:1jcaCB/ufaK+sKp1NBhlGmpz41jOoPQ35bpF36t7BBo=
+github.com/Layr-Labs/eigenlayer-contracts v0.2.3-mainnet-m2.0.20240503163838-118ad516f9d1 h1:Jj479+hJXTeo2y+UgHHHjTM/a0K9PVcCQIyzPyiL6a4=
+github.com/Layr-Labs/eigenlayer-contracts v0.2.3-mainnet-m2.0.20240503163838-118ad516f9d1/go.mod h1:+Ip6I5FpoU3tswZvpzafoURQGa5c2x0XqvD8y2+yWl0=
 github.com/Microsoft/go-winio v0.6.1 h1:9/kr64B9VUZrLm5YYwbGtUJnMgqWVOdUAXu6Migciow=
 github.com/Microsoft/go-winio v0.6.1/go.mod h1:LRdKpFKfdobln8UmuiYcKPot9D2v6svN5+sAH+4kjUM=
 github.com/StackExchange/wmi v1.2.1 h1:VIkavFPXSjcnS+O8yTq7NI32k0R5Aj+v39y29VYDOSA=

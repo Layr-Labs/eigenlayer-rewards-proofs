@@ -67,9 +67,9 @@ func NewDistributionWithData(initJsonData []byte) (*Distribution, error) {
 }
 
 type EarnerLine struct {
-	Earner           string `json:"earner"`
-	Token            string `json:"token"`
-	CumulativeAmount string `json:"cumulative_amount"`
+	Earner           string  `json:"earner"`
+	Token            string  `json:"token"`
+	CumulativeAmount float64 `json:"cumulative_amount"`
 }
 
 func (d *Distribution) LoadLine(line *EarnerLine) error {
@@ -77,15 +77,7 @@ func (d *Distribution) LoadLine(line *EarnerLine) error {
 	token := gethcommon.HexToAddress(line.Token)
 	cumulativePaymentString := line.CumulativeAmount
 
-	if cumulativePaymentString == "" {
-		cumulativePaymentString = "0"
-	}
-
-	cumulativePayment, ok := new(big.Int).SetString(cumulativePaymentString, 10)
-	if !ok {
-		errorMessage := fmt.Sprintf("not a valid big integer: %s", cumulativePayment)
-		return fmt.Errorf(errorMessage)
-	}
+	cumulativePayment := new(big.Int).SetUint64(uint64(cumulativePaymentString))
 
 	d.Set(earner, token, cumulativePayment)
 	return nil

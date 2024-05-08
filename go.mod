@@ -11,6 +11,7 @@ require (
 )
 
 require (
+	github.com/Layr-Labs/eigenlayer-contracts v0.2.3-mainnet-m2.0.20240503163838-118ad516f9d1 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
