@@ -83,13 +83,14 @@ func (d *Distribution) LoadLine(line EarnerLine) error {
 
 	cumulativePayment := new(big.Int).SetUint64(uint64(cumulativePaymentString))
 
-	d.Set(earner, token, cumulativePayment)
-	return nil
+	return d.Set(earner, token, cumulativePayment)
 }
 
 func (d *Distribution) LoadFromLines(lines []*EarnerLine) error {
 	for _, line := range lines {
-		d.LoadLine(*line)
+		if err := d.LoadLine(*line); err != nil {
+			return err
+		}
 	}
 	return nil
 }
