@@ -92,22 +92,13 @@ func (d *Distribution) LoadLines(lines []*EarnerLine) error {
 		fmt.Printf("Lines before sort: %v\n", lines)
 	}
 	sort.Slice(lines, func(i, j int) bool {
-		return lines[i].Earner < lines[j].Earner
+		return fmt.Sprintf("%s%s", lines[i].Earner, lines[i].Token) < fmt.Sprintf("%s%s", lines[j].Earner, lines[j].Token)
 	})
 	if d.Debug {
 		fmt.Printf("Lines after sort: %v\n", lines)
 	}
 	for _, l := range lines {
 		if err := d.loadLine(*l); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
-func (d *Distribution) LoadFromLines(lines []*EarnerLine) error {
-	for _, line := range lines {
-		if err := d.loadLine(*line); err != nil {
 			return err
 		}
 	}
