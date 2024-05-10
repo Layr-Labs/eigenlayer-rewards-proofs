@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/wealdtech/go-merkletree/v2"
 	"math/big"
+	"sort"
 
 	gethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/holiman/uint256"
@@ -84,6 +85,24 @@ func (d *Distribution) LoadLine(line EarnerLine) error {
 	cumulativePayment := new(big.Int).SetUint64(uint64(cumulativePaymentString))
 
 	return d.Set(earner, token, cumulativePayment)
+}
+
+func (d *Distribution) LoadLines(lines []*EarnerLine) error {
+	if d.Debug {
+		fmt.Printf("Lines before sort: %v\n", lines)
+	}
+	sort.Slice(lines, func(i, j int) bool {
+		return lines[i].Earner < lines[j].Earner
+	})
+	if d.Debug {
+		fmt.Printf("Lines after sort: %v\n", lines)
+	}
+	for _, l := range lines {
+		if err := d.LoadLine(*l); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (d *Distribution) LoadFromLines(lines []*EarnerLine) error {
