@@ -74,9 +74,9 @@ type EarnerLine struct {
 	CumulativeAmount float64 `json:"cumulative_amount"`
 }
 
-func (d *Distribution) LoadLine(line EarnerLine) error {
+func (d *Distribution) loadLine(line EarnerLine) error {
 	if d.Debug {
-		fmt.Printf("Distribution.LoadLine: %v\n", line)
+		fmt.Printf("Distribution.loadLine: %v\n", line)
 	}
 	earner := gethcommon.HexToAddress(line.Earner)
 	token := gethcommon.HexToAddress(line.Token)
@@ -98,7 +98,7 @@ func (d *Distribution) LoadLines(lines []*EarnerLine) error {
 		fmt.Printf("Lines after sort: %v\n", lines)
 	}
 	for _, l := range lines {
-		if err := d.LoadLine(*l); err != nil {
+		if err := d.loadLine(*l); err != nil {
 			return err
 		}
 	}
@@ -107,7 +107,7 @@ func (d *Distribution) LoadLines(lines []*EarnerLine) error {
 
 func (d *Distribution) LoadFromLines(lines []*EarnerLine) error {
 	for _, line := range lines {
-		if err := d.LoadLine(*line); err != nil {
+		if err := d.loadLine(*line); err != nil {
 			return err
 		}
 	}
