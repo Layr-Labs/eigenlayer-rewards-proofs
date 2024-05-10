@@ -73,7 +73,7 @@ type EarnerLine struct {
 	CumulativeAmount float64 `json:"cumulative_amount"`
 }
 
-func (d *Distribution) LoadLine(line *EarnerLine) error {
+func (d *Distribution) LoadLine(line EarnerLine) error {
 	if d.Debug {
 		fmt.Printf("Distribution.LoadLine: %v\n", line)
 	}
@@ -89,7 +89,7 @@ func (d *Distribution) LoadLine(line *EarnerLine) error {
 
 func (d *Distribution) LoadFromLines(lines []*EarnerLine) error {
 	for _, line := range lines {
-		d.LoadLine(line)
+		d.LoadLine(*line)
 	}
 	return nil
 }
