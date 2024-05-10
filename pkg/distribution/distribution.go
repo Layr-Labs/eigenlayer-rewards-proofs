@@ -43,6 +43,7 @@ type Distribution struct {
 	accountIndices map[gethcommon.Address]uint64                        // used for optimizing proving
 	tokenIndices   map[gethcommon.Address]map[gethcommon.Address]uint64 // used for optimizing proving
 	data           *orderedmap.OrderedMap[gethcommon.Address, *orderedmap.OrderedMap[gethcommon.Address, *BigInt]]
+	Debug          bool
 }
 
 func NewDistribution() *Distribution {
@@ -73,6 +74,9 @@ type EarnerLine struct {
 }
 
 func (d *Distribution) LoadLine(line *EarnerLine) error {
+	if d.Debug {
+		fmt.Printf("Distribution.LoadLine: %v\n", line)
+	}
 	earner := gethcommon.HexToAddress(line.Earner)
 	token := gethcommon.HexToAddress(line.Token)
 	cumulativePaymentString := line.CumulativeAmount
@@ -106,6 +110,9 @@ func (d *Distribution) UnmarshalJSON(p []byte) error {
 
 // Set sets the value for a given address.
 func (d *Distribution) Set(address, token gethcommon.Address, amount *big.Int) error {
+	if d.Debug {
+		fmt.Printf("Distribution.Set: '%s' '%s' '%s'\n", address.String(), token.String(), amount.String())
+	}
 	allocatedTokens, found := d.data.Get(address)
 	if !found {
 		allocatedTokens = orderedmap.New[gethcommon.Address, *BigInt]()
