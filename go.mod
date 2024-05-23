@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	github.com/Layr-Labs/eigenlayer-contracts v0.3.0-rc1-holesky-preprod-payments // indirect
+	github.com/Layr-Labs/eigenlayer-contracts v0.2.5-mainnet-m2-minor-eigenpod-upgrade.0.20240523155341-ae95614b048a // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
