@@ -1,10 +1,9 @@
 module github.com/Layr-Labs/eigenlayer-payment-proofs
 
-go 1.22.2
-
-toolchain go1.22.3
+go 1.21
 
 require (
+	github.com/Layr-Labs/eigenlayer-contracts v0.2.5-mainnet-m2-minor-eigenpod-upgrade.0.20240523170638-a2fb4c5444b1
 	github.com/ethereum/go-ethereum v1.14.0
 	github.com/holiman/uint256 v1.2.4
 	github.com/stretchr/testify v1.9.0
@@ -13,7 +12,6 @@ require (
 )
 
 require (
-	github.com/Layr-Labs/eigenlayer-contracts v0.2.5-mainnet-m2-minor-eigenpod-upgrade.0.20240523155341-ae95614b048a // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
