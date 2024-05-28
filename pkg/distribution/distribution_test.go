@@ -4,12 +4,12 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/Layr-Labs/eigenlayer-payment-proofs/internal/tests"
+	"github.com/Layr-Labs/eigenlayer-rewards-proofs/internal/tests"
 	"math/big"
 	"strings"
 	"testing"
 
-	"github.com/Layr-Labs/eigenlayer-payment-proofs/pkg/distribution"
+	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/distribution"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 )

@@ -2,4 +2,4 @@ WARNING: Please note that this repository is a work in progress and is currently
 
 # Introduction
 
-Go library for generating EigenLayer payment and claim proofs
+Go library for generating EigenLayer rewards and claim proofs

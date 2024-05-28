@@ -77,7 +77,7 @@ func (e *EarnerLine) CumulativeAmountBigInt() (*big.Int, error) {
 	cumulativePayment := new(big.Int)
 	cumulativePayment, success := cumulativePayment.SetString(e.CumulativeAmount, 10)
 	if !success {
-		return nil, fmt.Errorf("failed to parse cumulative payment: %s", e.CumulativeAmount)
+		return nil, fmt.Errorf("failed to parse cumulative reward: %s", e.CumulativeAmount)
 	}
 	return cumulativePayment, nil
 }
