@@ -29,32 +29,31 @@ func GetProofForEarner(
 	}
 
 	// get the token proofs
-	tokenIndices := make([]uint32, len(tokens))
-	tokenProofsBytes := make([][]byte, len(tokens))
-	tokenLeaves := make([]paymentCoordinator.IPaymentCoordinatorTokenTreeMerkleLeaf, len(tokens))
-	for i, token := range tokens {
+	tokenIndices := make([]uint32, 0)
+	tokenProofsBytes := make([][]byte, 0)
+	tokenLeaves := make([]paymentCoordinator.IPaymentCoordinatorTokenTreeMerkleLeaf, 0)
+	for _, token := range tokens {
 		tokenIndex, found := distribution.GetTokenIndex(earner, token)
 		if !found {
 			return nil, fmt.Errorf("%w for token %s and earner %s", ErrTokenIndexNotFound, token.Hex(), earner.Hex())
 		}
-		tokenIndices[i] = uint32(tokenIndex)
+		tokenIndices = append(tokenIndices, uint32(tokenIndex))
 
 		tokenProof, err := tokenTrees[earner].GenerateProofWithIndex(tokenIndex, 0)
 		if err != nil {
 			return nil, err
 		}
-		tokenProofsBytes[i] = flattenHashes(tokenProof.Hashes)
+		tokenProofsBytes = append(tokenProofsBytes, flattenHashes(tokenProof.Hashes))
 
 		amount, found := distribution.Get(earner, token)
 		if !found {
 			// this should never happen due to the token index check above
 			return nil, fmt.Errorf("%w for token %s and earner %s", ErrAmountNotFound, token.Hex(), earner.Hex())
 		}
-
-		tokenLeaves[i] = paymentCoordinator.IPaymentCoordinatorTokenTreeMerkleLeaf{
+		tokenLeaves = append(tokenLeaves, paymentCoordinator.IPaymentCoordinatorTokenTreeMerkleLeaf{
 			Token:              token,
 			CumulativeEarnings: amount,
-		}
+		})
 	}
 
 	var earnerRoot [32]byte

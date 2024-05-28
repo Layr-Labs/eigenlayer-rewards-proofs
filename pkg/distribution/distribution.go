@@ -3,14 +3,13 @@ package distribution
 import (
 	"errors"
 	"fmt"
-	"github.com/wealdtech/go-merkletree/v2"
-	"math/big"
-	"sort"
-
 	gethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/holiman/uint256"
+	"github.com/wealdtech/go-merkletree/v2"
 	"github.com/wealdtech/go-merkletree/v2/keccak256"
 	orderedmap "github.com/wk8/go-ordered-map/v2"
+	"math/big"
+	"sort"
 )
 
 var ErrAddressNotInOrder = errors.New("addresses must be added in order")
@@ -69,20 +68,31 @@ func NewDistributionWithData(initJsonData []byte) (*Distribution, error) {
 }
 
 type EarnerLine struct {
-	Earner           string  `json:"earner"`
-	Token            string  `json:"token"`
-	CumulativeAmount float64 `json:"cumulative_amount"`
+	Earner           string `json:"earner"`
+	Token            string `json:"token"`
+	CumulativeAmount string `json:"cumulative_amount"`
 }
 
-func (d *Distribution) loadLine(line EarnerLine) error {
+func (e *EarnerLine) CumulativeAmountBigInt() (*big.Int, error) {
+	cumulativePayment := new(big.Int)
+	cumulativePayment, success := cumulativePayment.SetString(e.CumulativeAmount, 10)
+	if !success {
+		return nil, fmt.Errorf("failed to parse cumulative payment: %s", e.CumulativeAmount)
+	}
+	return cumulativePayment, nil
+}
+
+func (d *Distribution) loadLine(line *EarnerLine) error {
 	if d.Debug {
 		fmt.Printf("Distribution.loadLine: %v\n", line)
 	}
 	earner := gethcommon.HexToAddress(line.Earner)
 	token := gethcommon.HexToAddress(line.Token)
-	cumulativePaymentString := line.CumulativeAmount
 
-	cumulativePayment := new(big.Int).SetUint64(uint64(cumulativePaymentString))
+	cumulativePayment, err := line.CumulativeAmountBigInt()
+	if err != nil {
+		return err
+	}
 
 	return d.Set(earner, token, cumulativePayment)
 }
@@ -98,7 +108,7 @@ func (d *Distribution) LoadLines(lines []*EarnerLine) error {
 		fmt.Printf("Lines after sort: %v\n", lines)
 	}
 	for _, l := range lines {
-		if err := d.loadLine(*l); err != nil {
+		if err := d.loadLine(l); err != nil {
 			return err
 		}
 	}
