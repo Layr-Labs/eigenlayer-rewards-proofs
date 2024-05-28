@@ -50,7 +50,6 @@ func GetProofForEarner(
 			// this should never happen due to the token index check above
 			return nil, fmt.Errorf("%w for token %s and earner %s", ErrAmountNotFound, token.Hex(), earner.Hex())
 		}
-		fmt.Printf("token: %+v - amount: %s\n", token, amount.String())
 		tokenLeaves = append(tokenLeaves, paymentCoordinator.IPaymentCoordinatorTokenTreeMerkleLeaf{
 			Token:              token,
 			CumulativeEarnings: amount,
