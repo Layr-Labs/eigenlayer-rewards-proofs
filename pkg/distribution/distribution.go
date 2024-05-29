@@ -74,12 +74,12 @@ type EarnerLine struct {
 }
 
 func (e *EarnerLine) CumulativeAmountBigInt() (*big.Int, error) {
-	cumulativePayment := new(big.Int)
-	cumulativePayment, success := cumulativePayment.SetString(e.CumulativeAmount, 10)
+	cumulativeRewards := new(big.Int)
+	cumulativeRewards, success := cumulativeRewards.SetString(e.CumulativeAmount, 10)
 	if !success {
 		return nil, fmt.Errorf("failed to parse cumulative reward: %s", e.CumulativeAmount)
 	}
-	return cumulativePayment, nil
+	return cumulativeRewards, nil
 }
 
 func (d *Distribution) loadLine(line *EarnerLine) error {
@@ -89,12 +89,12 @@ func (d *Distribution) loadLine(line *EarnerLine) error {
 	earner := gethcommon.HexToAddress(line.Earner)
 	token := gethcommon.HexToAddress(line.Token)
 
-	cumulativePayment, err := line.CumulativeAmountBigInt()
+	cumulativeRewards, err := line.CumulativeAmountBigInt()
 	if err != nil {
 		return err
 	}
 
-	return d.Set(earner, token, cumulativePayment)
+	return d.Set(earner, token, cumulativeRewards)
 }
 
 func (d *Distribution) LoadLines(lines []*EarnerLine) error {

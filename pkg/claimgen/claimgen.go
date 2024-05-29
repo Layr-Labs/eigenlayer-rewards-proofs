@@ -94,7 +94,7 @@ type IRewardsCoordinatorEarnerTreeMerkleLeafStrings struct {
 	EarnerTokenRoot string
 }
 
-type IRewardsCoordinatorPaymentMerkleClaimStrings struct {
+type IRewardsCoordinatorRewardsMerkleClaimStrings struct {
 	Root               string
 	RootIndex          uint32
 	EarnerIndex        uint32
@@ -107,8 +107,8 @@ type IRewardsCoordinatorPaymentMerkleClaimStrings struct {
 	TokenLeavesNum     uint32
 }
 
-func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim) *IRewardsCoordinatorPaymentMerkleClaimStrings {
-	return &IRewardsCoordinatorPaymentMerkleClaimStrings{
+func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim) *IRewardsCoordinatorRewardsMerkleClaimStrings {
+	return &IRewardsCoordinatorRewardsMerkleClaimStrings{
 		Root:            utils.ConvertBytesToString(accountTreeRoot),
 		RootIndex:       proof.RootIndex,
 		EarnerIndex:     proof.EarnerIndex,
