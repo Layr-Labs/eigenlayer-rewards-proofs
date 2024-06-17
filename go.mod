@@ -3,7 +3,7 @@ module github.com/Layr-Labs/eigenlayer-rewards-proofs
 go 1.21
 
 require (
-	github.com/Layr-Labs/eigenlayer-contracts v0.3.0-rc2-holesky-preprod-rewards.0.20240528185507-d8ac41afbabc
+	github.com/Layr-Labs/eigenlayer-contracts v0.3.0-rc3-holesky-preprod-rewards.0.20240617160929-ac26a1ddbf8b
 	github.com/ethereum/go-ethereum v1.14.0
 	github.com/holiman/uint256 v1.2.4
 	github.com/stretchr/testify v1.9.0
