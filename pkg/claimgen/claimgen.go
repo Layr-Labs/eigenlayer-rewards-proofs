@@ -100,7 +100,7 @@ type IRewardsCoordinatorRewardsMerkleClaimStrings struct {
 	EarnerIndex        uint32
 	EarnerTreeProof    string
 	EarnerLeaf         IRewardsCoordinatorEarnerTreeMerkleLeafStrings
-	LeafIndices        []uint32
+	TokenIndices       []uint32
 	TokenTreeProofs    []string
 	TokenLeaves        []rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf
 	TokenTreeProofsNum uint32
@@ -117,7 +117,7 @@ func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IR
 			Earner:          proof.EarnerLeaf.Earner,
 			EarnerTokenRoot: utils.ConvertBytes32ToString(proof.EarnerLeaf.EarnerTokenRoot),
 		},
-		LeafIndices:        proof.TokenIndices,
+		TokenIndices:       proof.TokenIndices,
 		TokenTreeProofs:    utils.ConvertBytesToStrings(proof.TokenTreeProofs),
 		TokenLeaves:        proof.TokenLeaves,
 		TokenTreeProofsNum: uint32(len(proof.TokenTreeProofs)),
