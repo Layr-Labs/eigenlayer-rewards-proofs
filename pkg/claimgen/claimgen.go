@@ -136,7 +136,7 @@ func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IR
 }
 
 func convertTokenLeavesToSolidityLeaves(tokenLeaves []rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf) []IRewardsCoordinatorTokenTreeMerkleLeafStrings {
-	leaves := make([]IRewardsCoordinatorTokenTreeMerkleLeafStrings, len(tokenLeaves))
+	leaves := make([]IRewardsCoordinatorTokenTreeMerkleLeafStrings, 0)
 	for _, leaf := range tokenLeaves {
 		leaves = append(leaves, IRewardsCoordinatorTokenTreeMerkleLeafStrings{
 			Token:              leaf.Token,
