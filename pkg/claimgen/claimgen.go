@@ -3,12 +3,16 @@ package claimgen
 import (
 	"errors"
 	"fmt"
+	"math/big"
+
 	rewardsCoordinator "github.com/Layr-Labs/eigenlayer-contracts/pkg/bindings/IRewardsCoordinator"
+
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/distribution"
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/utils"
+
 	gethcommon "github.com/ethereum/go-ethereum/common"
+
 	"github.com/wealdtech/go-merkletree/v2"
-	"math/big"
 )
 
 var ErrEarnerIndexNotFound = errors.New("earner index not found")
