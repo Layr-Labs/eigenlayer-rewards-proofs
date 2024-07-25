@@ -3,10 +3,15 @@ package claimgen
 import (
 	"errors"
 	"fmt"
+	"math/big"
+
 	rewardsCoordinator "github.com/Layr-Labs/eigenlayer-contracts/pkg/bindings/IRewardsCoordinator"
+
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/distribution"
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/utils"
+
 	gethcommon "github.com/ethereum/go-ethereum/common"
+
 	"github.com/wealdtech/go-merkletree/v2"
 )
 
@@ -14,7 +19,7 @@ var ErrEarnerIndexNotFound = errors.New("earner index not found")
 var ErrTokenIndexNotFound = errors.New("token not found")
 var ErrAmountNotFound = errors.New("amount not found")
 
-// Helper function for getting the proof for the specified earner and tokens
+// GetProofForEarner Helper function for getting the proof for the specified earner and tokens
 func GetProofForEarner(
 	distribution *distribution.Distribution,
 	rootIndex uint32,
@@ -90,21 +95,26 @@ func flattenHashes(hashes [][]byte) []byte {
 }
 
 type IRewardsCoordinatorEarnerTreeMerkleLeafStrings struct {
-	Earner          gethcommon.Address
-	EarnerTokenRoot string
+	Earner          gethcommon.Address `json:"earner"`
+	EarnerTokenRoot string             `json:"earnerTokenRoot"`
+}
+
+type IRewardsCoordinatorTokenTreeMerkleLeafStrings struct {
+	Token              gethcommon.Address `json:"token"`
+	CumulativeEarnings *big.Int           `json:"cumulativeEarnings"`
 }
 
 type IRewardsCoordinatorRewardsMerkleClaimStrings struct {
-	Root               string
-	RootIndex          uint32
-	EarnerIndex        uint32
-	EarnerTreeProof    string
-	EarnerLeaf         IRewardsCoordinatorEarnerTreeMerkleLeafStrings
-	TokenIndices       []uint32
-	TokenTreeProofs    []string
-	TokenLeaves        []rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf
-	TokenTreeProofsNum uint32
-	TokenLeavesNum     uint32
+	Root               string                                          `json:"root"`
+	RootIndex          uint32                                          `json:"rootIndex"`
+	EarnerIndex        uint32                                          `json:"earnerIndex"`
+	EarnerTreeProof    string                                          `json:"earnerTreeProof"`
+	EarnerLeaf         IRewardsCoordinatorEarnerTreeMerkleLeafStrings  `json:"earnerLeaf"`
+	TokenIndices       []uint32                                        `json:"tokenIndices"`
+	TokenTreeProofs    []string                                        `json:"tokenTreeProofs"`
+	TokenLeaves        []IRewardsCoordinatorTokenTreeMerkleLeafStrings `json:"tokenLeaves"`
+	TokenTreeProofsNum uint32                                          `json:"tokenTreeProofsNum"`
+	TokenLeavesNum     uint32                                          `json:"tokenLeavesNum"`
 }
 
 func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim) *IRewardsCoordinatorRewardsMerkleClaimStrings {
@@ -119,10 +129,21 @@ func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IR
 		},
 		TokenIndices:       proof.TokenIndices,
 		TokenTreeProofs:    utils.ConvertBytesToStrings(proof.TokenTreeProofs),
-		TokenLeaves:        proof.TokenLeaves,
+		TokenLeaves:        convertTokenLeavesToSolidityLeaves(proof.TokenLeaves),
 		TokenTreeProofsNum: uint32(len(proof.TokenTreeProofs)),
 		TokenLeavesNum:     uint32(len(proof.TokenLeaves)),
 	}
+}
+
+func convertTokenLeavesToSolidityLeaves(tokenLeaves []rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf) []IRewardsCoordinatorTokenTreeMerkleLeafStrings {
+	leaves := make([]IRewardsCoordinatorTokenTreeMerkleLeafStrings, len(tokenLeaves))
+	for _, leaf := range tokenLeaves {
+		leaves = append(leaves, IRewardsCoordinatorTokenTreeMerkleLeafStrings{
+			Token:              leaf.Token,
+			CumulativeEarnings: leaf.CumulativeEarnings,
+		})
+	}
+	return leaves
 }
 
 type Claimgen struct {
