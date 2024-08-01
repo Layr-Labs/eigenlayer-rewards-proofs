@@ -63,6 +63,12 @@ type SubmittedRewardRoot struct {
 	BlockNumber      uint64    `json:"block_number"`
 }
 
+type DisabledRoot struct {
+	RootIndex   uint32    `json:"root_index"`
+	BlockDate   time.Time `json:"block_date"`
+	BlockNumber uint64    `json:"block_number"`
+}
+
 func (s *SubmittedRewardRoot) UnmarshalJSON(data []byte) error {
 	var index interface{}
 	err := json.Unmarshal(data, &index)
