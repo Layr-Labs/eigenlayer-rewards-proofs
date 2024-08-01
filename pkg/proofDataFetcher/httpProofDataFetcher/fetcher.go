@@ -121,6 +121,25 @@ func (h *HttpProofDataFetcher) FetchPostedRewards(ctx context.Context) ([]*proof
 	return rewards, nil
 }
 
+func (h *HttpProofDataFetcher) FetchDisabledRoots(ctx context.Context) ([]*proofDataFetcher.DisabledRoot, error) {
+	fullUrl := h.buildDisabledRootsUrl()
+
+	rawBody, err := h.handleRequest(ctx, fullUrl)
+	if err != nil {
+		return nil, nil
+	}
+
+	if len(string(rawBody)) == 0 {
+		return nil, nil
+	}
+
+	disabledRoots := make([]*proofDataFetcher.DisabledRoot, 0)
+	if err := json.Unmarshal(rawBody, &disabledRoots); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal disabled roots: %w", err)
+	}
+	return disabledRoots, nil
+}
+
 func (h *HttpProofDataFetcher) handleRequest(ctx context.Context, fullUrl string) ([]byte, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, fullUrl, nil)
 	if err != nil {
@@ -167,6 +186,15 @@ func (h *HttpProofDataFetcher) buildClaimAmountsUrl(snapshotDate string) string 
 func (h *HttpProofDataFetcher) buildPostedRewardsUrl() string {
 	// <baseurl>/<env>/<network>/submitted-payments.json
 	return fmt.Sprintf("%s/%s/%s/submitted-payments.json",
+		h.BaseUrl,
+		h.Environment,
+		h.Network,
+	)
+}
+
+func (h *HttpProofDataFetcher) buildDisabledRootsUrl() string {
+	// <baseurl>/<env>/<network>/disabled-roots.json
+	return fmt.Sprintf("%s/%s/%s/disabled-roots.json",
 		h.BaseUrl,
 		h.Environment,
 		h.Network,
