@@ -16,6 +16,7 @@ type ProofDataFetcher interface {
 	FetchRecentSnapshotList(ctx context.Context) ([]*Snapshot, error)
 	FetchLatestSnapshot(ctx context.Context) (*Snapshot, error)
 	FetchPostedRewards(ctx context.Context) ([]*SubmittedRewardRoot, error)
+	FetchDisabledRoots(ctx context.Context) ([]*DisabledRoot, error)
 }
 
 type HTTPClient interface {
