@@ -173,6 +173,10 @@ func (d *Distribution) Get(address, token gethcommon.Address) (*big.Int, bool) {
 	return amount.Int, true
 }
 
+func (d *Distribution) GetTokensForEarner(address gethcommon.Address) (*orderedmap.OrderedMap[gethcommon.Address, *BigInt], bool) {
+	return d.data.Get(address)
+}
+
 // Sets the index of the account in the distribution
 func (d *Distribution) setAccountIndex(address gethcommon.Address, index uint64) {
 	if d.accountIndices == nil {
