@@ -3,8 +3,6 @@ package claimgen
 import (
 	"errors"
 	"fmt"
-	"math/big"
-
 	rewardsCoordinator "github.com/Layr-Labs/eigenlayer-contracts/pkg/bindings/IRewardsCoordinator"
 
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/distribution"
@@ -101,7 +99,7 @@ type IRewardsCoordinatorEarnerTreeMerkleLeafStrings struct {
 
 type IRewardsCoordinatorTokenTreeMerkleLeafStrings struct {
 	Token              gethcommon.Address `json:"token"`
-	CumulativeEarnings *big.Int           `json:"cumulativeEarnings"`
+	CumulativeEarnings string             `json:"cumulativeEarnings"`
 }
 
 type IRewardsCoordinatorRewardsMerkleClaimStrings struct {
@@ -140,7 +138,7 @@ func convertTokenLeavesToSolidityLeaves(tokenLeaves []rewardsCoordinator.IReward
 	for _, leaf := range tokenLeaves {
 		leaves = append(leaves, IRewardsCoordinatorTokenTreeMerkleLeafStrings{
 			Token:              leaf.Token,
-			CumulativeEarnings: leaf.CumulativeEarnings,
+			CumulativeEarnings: leaf.CumulativeEarnings.String(),
 		})
 	}
 	return leaves
