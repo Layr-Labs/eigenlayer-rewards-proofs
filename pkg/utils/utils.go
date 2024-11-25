@@ -17,3 +17,10 @@ func ConvertBytesToString(b []byte) string {
 func ConvertBytes32ToString(b [32]byte) string {
 	return "0x" + hex.EncodeToString(b[:])
 }
+
+func ConvertStringToBytes(s string) ([]byte, error) {
+	if s[:2] == "0x" {
+		s = s[2:]
+	}
+	return hex.DecodeString(s)
+}
