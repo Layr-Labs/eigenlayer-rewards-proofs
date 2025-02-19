@@ -3,6 +3,7 @@ package claimgen
 import (
 	"errors"
 	"fmt"
+
 	rewardsCoordinator "github.com/Layr-Labs/eigenlayer-contracts/pkg/bindings/IRewardsCoordinator"
 
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/distribution"
@@ -25,7 +26,7 @@ func GetProofForEarner(
 	tokenTrees map[gethcommon.Address]*merkletree.MerkleTree,
 	earner gethcommon.Address,
 	tokens []gethcommon.Address,
-) (*rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim, error) {
+) (*rewardsCoordinator.IRewardsCoordinatorTypesRewardsMerkleClaim, error) {
 	earnerIndex, found := distribution.GetAccountIndex(earner)
 	if !found {
 		return nil, fmt.Errorf("%w for earner %s", ErrEarnerIndexNotFound, earner.Hex())
@@ -34,7 +35,7 @@ func GetProofForEarner(
 	// get the token proofs
 	tokenIndices := make([]uint32, 0)
 	tokenProofsBytes := make([][]byte, 0)
-	tokenLeaves := make([]rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf, 0)
+	tokenLeaves := make([]rewardsCoordinator.IRewardsCoordinatorTypesTokenTreeMerkleLeaf, 0)
 	for _, token := range tokens {
 		tokenIndex, found := distribution.GetTokenIndex(earner, token)
 		if !found {
@@ -53,7 +54,7 @@ func GetProofForEarner(
 			// this should never happen due to the token index check above
 			return nil, fmt.Errorf("%w for token %s and earner %s", ErrAmountNotFound, token.Hex(), earner.Hex())
 		}
-		tokenLeaves = append(tokenLeaves, rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf{
+		tokenLeaves = append(tokenLeaves, rewardsCoordinator.IRewardsCoordinatorTypesTokenTreeMerkleLeaf{
 			Token:              token,
 			CumulativeEarnings: amount,
 		})
@@ -70,11 +71,11 @@ func GetProofForEarner(
 
 	earnerTreeProofBytes := flattenHashes(earnerTreeProof.Hashes)
 
-	return &rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim{
+	return &rewardsCoordinator.IRewardsCoordinatorTypesRewardsMerkleClaim{
 		RootIndex:       rootIndex,
 		EarnerIndex:     uint32(earnerIndex),
 		EarnerTreeProof: earnerTreeProofBytes,
-		EarnerLeaf: rewardsCoordinator.IRewardsCoordinatorEarnerTreeMerkleLeaf{
+		EarnerLeaf: rewardsCoordinator.IRewardsCoordinatorTypesEarnerTreeMerkleLeaf{
 			Earner:          earner,
 			EarnerTokenRoot: earnerRoot,
 		},
@@ -115,7 +116,7 @@ type IRewardsCoordinatorRewardsMerkleClaimStrings struct {
 	TokenLeavesNum     uint32                                          `json:"tokenLeavesNum"`
 }
 
-func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim) *IRewardsCoordinatorRewardsMerkleClaimStrings {
+func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IRewardsCoordinatorTypesRewardsMerkleClaim) *IRewardsCoordinatorRewardsMerkleClaimStrings {
 	return &IRewardsCoordinatorRewardsMerkleClaimStrings{
 		Root:            utils.ConvertBytesToString(accountTreeRoot),
 		RootIndex:       proof.RootIndex,
@@ -133,7 +134,7 @@ func FormatProofForSolidity(accountTreeRoot []byte, proof *rewardsCoordinator.IR
 	}
 }
 
-func convertTokenLeavesToSolidityLeaves(tokenLeaves []rewardsCoordinator.IRewardsCoordinatorTokenTreeMerkleLeaf) []IRewardsCoordinatorTokenTreeMerkleLeafStrings {
+func convertTokenLeavesToSolidityLeaves(tokenLeaves []rewardsCoordinator.IRewardsCoordinatorTypesTokenTreeMerkleLeaf) []IRewardsCoordinatorTokenTreeMerkleLeafStrings {
 	leaves := make([]IRewardsCoordinatorTokenTreeMerkleLeafStrings, 0)
 	for _, leaf := range tokenLeaves {
 		leaves = append(leaves, IRewardsCoordinatorTokenTreeMerkleLeafStrings{
@@ -160,7 +161,7 @@ func (c *Claimgen) GenerateClaimProofForEarner(
 	rootIndex uint32,
 ) (
 	*merkletree.MerkleTree,
-	*rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim,
+	*rewardsCoordinator.IRewardsCoordinatorTypesRewardsMerkleClaim,
 	error,
 ) {
 	accountTree, tokenTrees, err := c.distribution.Merklize()
