@@ -3,11 +3,12 @@ package services
 import (
 	"context"
 	"fmt"
+	"math/big"
+
 	rewardsCoordinator "github.com/Layr-Labs/eigenlayer-contracts/pkg/bindings/IRewardsCoordinator"
 	"github.com/Layr-Labs/eigenlayer-rewards-proofs/pkg/chainClient"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
-	"math/big"
 )
 
 type Transactor interface {
@@ -15,9 +16,9 @@ type Transactor interface {
 	GetNumberOfPublishedRoots() (*big.Int, error)
 	GetRootIndex(root [32]byte) (uint32, error)
 	SubmitRoot(ctx context.Context, root [32]byte, rewardsUnixTimestamp uint32) error
-	SubmitRewardClaim(ctx context.Context, claim rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim, earnerAddress gethcommon.Address) error
-	GetRootByIndex(index uint64) (*rewardsCoordinator.IRewardsCoordinatorDistributionRoot, error)
-	GetCurrentRoot() (*rewardsCoordinator.IRewardsCoordinatorDistributionRoot, error)
+	SubmitRewardClaim(ctx context.Context, claim rewardsCoordinator.IRewardsCoordinatorTypesRewardsMerkleClaim, earnerAddress gethcommon.Address) error
+	GetRootByIndex(index uint64) (*rewardsCoordinator.IRewardsCoordinatorTypesDistributionRoot, error)
+	GetCurrentRoot() (*rewardsCoordinator.IRewardsCoordinatorTypesDistributionRoot, error)
 }
 
 type TransactorImpl struct {
@@ -76,12 +77,12 @@ func (s *TransactorImpl) GetRootIndex(root [32]byte) (uint32, error) {
 func (t *TransactorImpl) SubmitRoot(ctx context.Context, root [32]byte, rewardsUnixTimestamp uint32) error {
 	tx, err := t.CoordinatorTransactor.SubmitRoot(t.ChainClient.NoSendTransactOpts, root, rewardsUnixTimestamp)
 	if err != nil {
-		return fmt.Errorf("Rewards coordinator, failed to submit root: %+v - %+v", err, tx)
+		return fmt.Errorf("rewards coordinator, failed to submit root: %+v - %+v", err, tx)
 	}
 
 	receipt, err := t.ChainClient.EstimateGasPriceAndLimitAndSendTx(ctx, tx, "submitRoot")
 	if err != nil {
-		return fmt.Errorf("Failed to estimate gas: %+v\n", err)
+		return fmt.Errorf("failed to estimate gas: %+v", err)
 	}
 
 	if receipt.Status != 1 {
@@ -91,15 +92,15 @@ func (t *TransactorImpl) SubmitRoot(ctx context.Context, root [32]byte, rewardsU
 	return nil
 }
 
-func (t *TransactorImpl) SubmitRewardClaim(ctx context.Context, claim rewardsCoordinator.IRewardsCoordinatorRewardsMerkleClaim, earnerAddress gethcommon.Address) error {
+func (t *TransactorImpl) SubmitRewardClaim(ctx context.Context, claim rewardsCoordinator.IRewardsCoordinatorTypesRewardsMerkleClaim, earnerAddress gethcommon.Address) error {
 	tx, err := t.CoordinatorTransactor.ProcessClaim(t.ChainClient.NoSendTransactOpts, claim, earnerAddress)
 	if err != nil {
-		return fmt.Errorf("Rewards coordinator, failed to submit reward claim: %+v - %+v", err, tx)
+		return fmt.Errorf("rewards coordinator, failed to submit reward claim: %+v - %+v", err, tx)
 	}
 
 	receipt, err := t.ChainClient.EstimateGasPriceAndLimitAndSendTx(ctx, tx, "submitRewardClaim")
 	if err != nil {
-		return fmt.Errorf("Failed to estimate gas: %+v\n", err)
+		return fmt.Errorf("failed to estimate gas: %+v", err)
 	}
 
 	if receipt.Status != 1 {
@@ -109,12 +110,12 @@ func (t *TransactorImpl) SubmitRewardClaim(ctx context.Context, claim rewardsCoo
 	return nil
 }
 
-func (t *TransactorImpl) GetRootByIndex(index uint64) (*rewardsCoordinator.IRewardsCoordinatorDistributionRoot, error) {
+func (t *TransactorImpl) GetRootByIndex(index uint64) (*rewardsCoordinator.IRewardsCoordinatorTypesDistributionRoot, error) {
 	root, err := t.CoordinatorCaller.GetDistributionRootAtIndex(&bind.CallOpts{}, big.NewInt(int64(index)))
 	return &root, err
 }
 
-func (t *TransactorImpl) GetCurrentRoot() (*rewardsCoordinator.IRewardsCoordinatorDistributionRoot, error) {
+func (t *TransactorImpl) GetCurrentRoot() (*rewardsCoordinator.IRewardsCoordinatorTypesDistributionRoot, error) {
 	root, err := t.CoordinatorCaller.GetCurrentDistributionRoot(&bind.CallOpts{})
 	if err != nil {
 		return nil, err
